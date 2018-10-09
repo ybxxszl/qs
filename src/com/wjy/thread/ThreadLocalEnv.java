@@ -9,7 +9,7 @@ package com.wjy.thread;
  */
 public class ThreadLocalEnv {
 
-	private static final ThreadLocal<ThreadLocalVar> ENV = new ThreadLocal<ThreadLocalVar>();
+	private static final ThreadLocalCustom ENV = new ThreadLocalCustom();
 
 	/**
 	 * GET当前环境变量
