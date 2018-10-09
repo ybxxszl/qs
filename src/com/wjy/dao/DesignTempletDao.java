@@ -12,7 +12,6 @@ import org.apache.log4j.Logger;
 
 import com.wjy.log.LOG;
 import com.wjy.thread.ThreadLocalEnv;
-import com.wjy.util.JDBCUtil;
 import com.wjy.vo.DesignTemplet;
 
 public class DesignTempletDao {

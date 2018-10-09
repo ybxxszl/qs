@@ -35,18 +35,22 @@ public class ThreadLocalVar {
 		this.author_name = author_name;
 	}
 
-	public Connection getConn() {
+	/**
+	 * @date 2018年10月9日
+	 * @author ybxxszl
+	 * @description 获取数据库连接
+	 * @throws 数据库连接异常
+	 * @return Connection 数据库连接
+	 * @throws ClassNotFoundException
+	 *             类找不到异常
+	 * @throws SQLException
+	 *             SQL异常
+	 */
+	public Connection getConn() throws ClassNotFoundException, SQLException {
+		// 初始化时创建数据库连接
 		if (conn == null) {
-			try {
-				conn = JDBCUtil.getConnect();
-				setConn(conn);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			conn = JDBCUtil.getConnect();
+			setConn(conn);
 		}
 		return conn;
 	}

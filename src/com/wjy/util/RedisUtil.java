@@ -4,6 +4,11 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+/**
+ * @date 2018年10月9日
+ * @author ybxxszl
+ * @description Redis工具类
+ */
 public class RedisUtil {
 
 	private static String url;
@@ -18,7 +23,12 @@ public class RedisUtil {
 
 	}
 
-	public void open() {
+	/**
+	 * @date 2018年10月9日
+	 * @author ybxxszl
+	 * @description 打开Redis连接
+	 */
+	public static void open() {
 
 		jedisPoolConfig = new JedisPoolConfig();
 
@@ -27,7 +37,12 @@ public class RedisUtil {
 
 	}
 
-	public void close() {
+	/**
+	 * @date 2018年10月9日
+	 * @author ybxxszl
+	 * @description 关闭Redis连接
+	 */
+	public static void close() {
 
 		jedis.close();
 

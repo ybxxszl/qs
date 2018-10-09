@@ -10,11 +10,9 @@ import com.wjy.thread.ThreadLocalEnv;
 import com.wjy.thread.ThreadLocalVar;
 
 /**
- * 请求过滤
- * 
- * @date 2018年10月7日
+ * @date 2018年10月9日
  * @author ybxxszl
- * @description TODO
+ * @description 请求过滤
  */
 public class RequestFilter implements ContainerRequestFilter {
 
@@ -24,17 +22,15 @@ public class RequestFilter implements ContainerRequestFilter {
 		String authorId = requestContext.getHeaderString("H-authorId");
 		String authorName = requestContext.getHeaderString("H-authorName");
 
-		System.out.println("请求过滤：H-authorId:" + authorId + " H-authorName:" + authorName);
+		if (authorId == null && authorName == null) {
 
-		if (authorId != null && authorName != null) {
+			requestContext.abortWith(ResponseBuilder.response("请重新登录", 401));
+
+		} else {
 
 			ThreadLocalVar threadLocalVar = new ThreadLocalVar(authorId, authorName);
 
 			ThreadLocalEnv.setENV(threadLocalVar);
-
-		} else {
-
-			requestContext.abortWith(ResponseBuilder.response("请重新登录", 401));
 
 		}
 
