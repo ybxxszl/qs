@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
-import javax.ws.rs.ext.Provider;
 
 import com.wjy.restful.ResponseBuilder;
 import com.wjy.thread.ThreadLocalEnv;
@@ -17,7 +16,6 @@ import com.wjy.thread.ThreadLocalVar;
  * @author ybxxszl
  * @description TODO
  */
-@Provider
 public class RequestFilter implements ContainerRequestFilter {
 
 	@Override
@@ -26,15 +24,17 @@ public class RequestFilter implements ContainerRequestFilter {
 		String authorId = requestContext.getHeaderString("H-authorId");
 		String authorName = requestContext.getHeaderString("H-authorName");
 
+		System.out.println("请求过滤：H-authorId:" + authorId + " H-authorName:" + authorName);
+
 		if (authorId != null && authorName != null) {
-
-			requestContext.abortWith(ResponseBuilder.response("请重新登陆", 401));
-
-		} else {
 
 			ThreadLocalVar threadLocalVar = new ThreadLocalVar(authorId, authorName);
 
 			ThreadLocalEnv.setENV(threadLocalVar);
+
+		} else {
+
+			requestContext.abortWith(ResponseBuilder.response("请重新登录", 401));
 
 		}
 

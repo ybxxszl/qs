@@ -38,9 +38,11 @@ public class DesignTempletAPI {
 		} catch (Exception e) {
 
 			LOGGER.error(e);
+			
+			e.printStackTrace();
 
-			LOG.pError(e.getMessage());
-			LOG.pException(e);
+//			LOG.pError(e.getMessage());
+//			LOG.pException(e);
 
 			return ResponseBuilder.exception(e);
 

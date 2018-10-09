@@ -1,6 +1,9 @@
 package com.wjy.thread;
 
 import java.sql.Connection;
+import java.sql.SQLException;
+
+import com.wjy.util.JDBCUtil;
 
 /**
  * 定义线程变量
@@ -33,6 +36,18 @@ public class ThreadLocalVar {
 	}
 
 	public Connection getConn() {
+		if (conn == null) {
+			try {
+				conn = JDBCUtil.getConnect();
+				setConn(conn);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return conn;
 	}
 
