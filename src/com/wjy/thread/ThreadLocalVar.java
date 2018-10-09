@@ -49,6 +49,12 @@ public class ThreadLocalVar {
 		this.conn = conn;
 	}
 
+	public ThreadLocalVar(String author_id, String author_name) {
+		super();
+		this.author_id = author_id;
+		this.author_name = author_name;
+	}
+
 	public ThreadLocalVar(String author_id, String author_name, Connection conn) {
 		super();
 		this.author_id = author_id;
