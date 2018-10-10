@@ -9,7 +9,6 @@ import javax.ws.rs.core.Response;
 import org.apache.log4j.Logger;
 
 import com.wjy.dao.DesignTempletDao;
-import com.wjy.log.LOG;
 import com.wjy.restful.ResponseBuilder;
 import com.wjy.vo.DesignTemplet;
 
@@ -29,8 +28,6 @@ public class DesignTempletAPI {
 
 		LOGGER.info(designTemplet);
 
-		LOG.pInfo(designTemplet);
-
 		try {
 
 			return ResponseBuilder.success(designTempletDao.getDesignTemplet(designTemplet));
@@ -38,11 +35,6 @@ public class DesignTempletAPI {
 		} catch (Exception e) {
 
 			LOGGER.error(e);
-
-			e.printStackTrace();
-
-			LOG.pError(e.getMessage());
-			LOG.pException(e);
 
 			return ResponseBuilder.exception(e);
 

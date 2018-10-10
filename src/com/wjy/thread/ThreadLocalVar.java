@@ -17,6 +17,8 @@ public class ThreadLocalVar {
 	private String author_id;
 	private String author_name;
 
+	private String token;
+
 	private Connection conn;
 
 	public String getAuthor_id() {
@@ -33,6 +35,14 @@ public class ThreadLocalVar {
 
 	public void setAuthor_name(String author_name) {
 		this.author_name = author_name;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	/**
@@ -63,27 +73,30 @@ public class ThreadLocalVar {
 		super();
 	}
 
+	public ThreadLocalVar(String author_id, String author_name, String token) {
+		super();
+		this.author_id = author_id;
+		this.author_name = author_name;
+		this.token = token;
+	}
+
 	public ThreadLocalVar(Connection conn) {
 		super();
 		this.conn = conn;
 	}
 
-	public ThreadLocalVar(String author_id, String author_name) {
+	public ThreadLocalVar(String author_id, String author_name, String token, Connection conn) {
 		super();
 		this.author_id = author_id;
 		this.author_name = author_name;
-	}
-
-	public ThreadLocalVar(String author_id, String author_name, Connection conn) {
-		super();
-		this.author_id = author_id;
-		this.author_name = author_name;
+		this.token = token;
 		this.conn = conn;
 	}
 
 	@Override
 	public String toString() {
-		return "ThreadLocalVar [author_id=" + author_id + ", author_name=" + author_name + ", conn=" + conn + "]";
+		return "ThreadLocalVar [author_id=" + author_id + ", author_name=" + author_name + ", token=" + token
+				+ ", conn=" + conn + "]";
 	}
 
 }

@@ -1,20 +1,36 @@
-package com.wjy.no;
+package com.wjy.util;
 
 import java.lang.reflect.InvocationTargetException;
+import java.sql.Connection;
 import java.sql.ParameterMetaData;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-public class BaseDao extends JDBCUtil {
+import com.wjy.thread.ThreadLocalEnv;
 
+/**
+ * @date 2018年10月9日
+ * @author ybxxszl
+ * @description SQLUtil工具类
+ */
+public class SQLUtil {
+
+	/**
+	 * @date 2018年10月9日
+	 * @author ybxxszl
+	 * @description 查询
+	 */
 	public <T> ArrayList<T> Query(String sql, Object[] paramters, Class<T> clazz) throws ClassNotFoundException,
 			SQLException, InstantiationException, IllegalAccessException, InvocationTargetException {
 
+		Connection conn = ThreadLocalEnv.getENV().getConn();
 		ArrayList<T> list = new ArrayList<T>();
-		pstmt = conn.prepareStatement(sql);
+		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ParameterMetaData pmd = pstmt.getParameterMetaData();
 		int count = pmd.getParameterCount();
 		if (paramters.length < count || paramters.length > count) {
@@ -24,7 +40,7 @@ public class BaseDao extends JDBCUtil {
 			Object obj = paramters[i];
 			pstmt.setObject(i + 1, obj);
 		}
-		rs = pstmt.executeQuery();
+		ResultSet rs = pstmt.executeQuery();
 		ResultSetMetaData rsm = pstmt.getMetaData();
 		while (rs.next()) {
 			T t = clazz.newInstance();
@@ -35,13 +51,22 @@ public class BaseDao extends JDBCUtil {
 			}
 			list.add(t);
 		}
+		rs.close();
+		pstmt.close();
+		conn.close();
 		return list;
 
 	}
 
+	/**
+	 * @date 2018年10月9日
+	 * @author ybxxszl
+	 * @description 增加、删除、修改
+	 */
 	public int Update(String sql, Object... paramters) throws ClassNotFoundException, SQLException {
 
-		pstmt = conn.prepareStatement(sql);
+		Connection conn = ThreadLocalEnv.getENV().getConn();
+		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ParameterMetaData pmd = pstmt.getParameterMetaData();
 		int count = pmd.getParameterCount();
 		if (paramters.length < count || paramters.length > count) {
@@ -51,6 +76,8 @@ public class BaseDao extends JDBCUtil {
 			pstmt.setObject(i + 1, paramters[i]);
 		}
 		int num = pstmt.executeUpdate();
+		pstmt.close();
+		conn.close();
 		return num;
 
 	}

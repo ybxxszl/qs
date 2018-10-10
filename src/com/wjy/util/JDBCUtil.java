@@ -1,10 +1,7 @@
 package com.wjy.util;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -18,11 +15,6 @@ public class JDBCUtil {
 	private static String url;
 	private static String user;
 	private static String password;
-
-	public static ResultSet rs = null;
-	public static PreparedStatement pstmt = null;
-	public static CallableStatement cstmt = null;
-	public static Connection conn = null;
 
 	static {
 
@@ -48,7 +40,7 @@ public class JDBCUtil {
 
 		Class.forName(classname);
 
-		conn = DriverManager.getConnection(url, user, password);
+		Connection conn = DriverManager.getConnection(url, user, password);
 
 		return conn;
 
