@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.wjy.exception.BusinessException;
+import com.wjy.jdbc.SQLUtil;
 import com.wjy.thread.ThreadLocalEnv;
-import com.wjy.mysql.SQLUtil;
 import com.wjy.vo.DesignTemplet;
 
 public class DesignTempletDao extends SQLUtil {
@@ -31,8 +31,6 @@ public class DesignTempletDao extends SQLUtil {
 		}
 
 		DesignTemplet dt = designTempletList.get(0);
-
-		System.out.println(("designTemplet:" + dt.toString()));
 
 		LOGGER.info(dt.toString());
 

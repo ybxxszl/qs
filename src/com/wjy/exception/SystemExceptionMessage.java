@@ -1,5 +1,10 @@
-package com.wjy.message;
+package com.wjy.exception;
 
+/**
+ * @date 2018年10月10日
+ * @author ybxxszl
+ * @description 系统异常信息
+ */
 public class SystemExceptionMessage {
 
 	// 未知异常

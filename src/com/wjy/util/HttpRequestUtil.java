@@ -10,6 +10,11 @@ import java.net.URLConnection;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * @date 2018年10月10日
+ * @author ybxxszl
+ * @description HttpRequest工具类
+ */
 public class HttpRequestUtil {
 
 	/**

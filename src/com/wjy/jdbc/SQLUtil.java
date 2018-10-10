@@ -1,4 +1,4 @@
-package com.wjy.mysql;
+package com.wjy.jdbc;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;

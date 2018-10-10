@@ -43,17 +43,13 @@ public class RequestFilter implements ContainerRequestFilter {
 
 		String path = requestContext.getUriInfo().getPath();
 
-		String authorId = requestContext.getHeaderString("H-authorId");
-
-		String token = requestContext.getHeaderString("H-token");
-
-		System.out.println("请求路径：" + path);
-
 		LOGGER.warn("请求路径：" + path);
 
-		System.out.println("authorId：" + authorId + " token：" + token);
+		String authorId = requestContext.getHeaderString("H-AuthorId");
 
-		LOGGER.warn("authorId：" + authorId + " token：" + token);
+		String token = requestContext.getHeaderString("H-Token");
+
+		LOGGER.warn("H-AuthorId: " + authorId + " H-Token: " + token);
 
 		Boolean verify = true;
 

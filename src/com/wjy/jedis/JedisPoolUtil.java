@@ -1,10 +1,15 @@
-package com.wjy.redis;
+package com.wjy.jedis;
 
 import com.wjy.util.PropertiesUtil;
 
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+/**
+ * @date 2018年10月10日
+ * @author ybxxszl
+ * @description JedisPool池工具类
+ */
 public class JedisPoolUtil {
 
 	private static String host;
@@ -46,6 +51,12 @@ public class JedisPoolUtil {
 
 	}
 
+	/**
+	 * @date 2018年10月10日
+	 * @author ybxxszl
+	 * @description 获取JedisPool池
+	 * @return JedisPool JedisPool池
+	 */
 	public static JedisPool getInstance() {
 
 		return jedisPool;

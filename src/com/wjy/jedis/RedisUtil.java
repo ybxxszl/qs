@@ -1,9 +1,25 @@
-package com.wjy.redis;
+package com.wjy.jedis;
 
 import redis.clients.jedis.Jedis;
 
+/**
+ * @date 2018年10月10日
+ * @author ybxxszl
+ * @description Redis工具类
+ */
 public class RedisUtil {
 
+	/**
+	 * @date 2018年10月10日
+	 * @author ybxxszl
+	 * @description TODO
+	 * @param key
+	 *            键
+	 * @param value
+	 *            值
+	 * @param seconds
+	 *            秒
+	 */
 	public static void set(String key, String value, int seconds) {
 
 		Jedis jedis = JedisPoolUtil.getInstance().getResource();
@@ -16,6 +32,15 @@ public class RedisUtil {
 
 	}
 
+	/**
+	 * @date 2018年10月10日
+	 * @author ybxxszl
+	 * @description TODO
+	 * @param key
+	 *            键
+	 * @param value
+	 *            值
+	 */
 	public static void set(String key, String value) {
 
 		Jedis jedis = JedisPoolUtil.getInstance().getResource();
@@ -26,6 +51,14 @@ public class RedisUtil {
 
 	}
 
+	/**
+	 * @date 2018年10月10日
+	 * @author ybxxszl
+	 * @description TODO
+	 * @param key
+	 *            键
+	 * @return String 值
+	 */
 	public static String get(String key) {
 
 		Jedis jedis = JedisPoolUtil.getInstance().getResource();

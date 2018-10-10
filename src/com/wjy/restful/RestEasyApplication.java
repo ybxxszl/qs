@@ -8,24 +8,30 @@ import javax.ws.rs.core.Application;
 
 import com.wjy.api.AuthorAPI;
 import com.wjy.api.DesignTempletAPI;
-import com.wjy.handle.BusinessExceptionHandle;
 import com.wjy.filter.RequestFilter;
 
-// 自动扫描模式
+/**
+ * @date 2018年10月10日
+ * @author ybxxszl
+ * @description 自动扫描模式
+ */
 @ApplicationPath(value = "/api")
 public class RestEasyApplication extends Application {
 
 	private Set<Object> singletons = new HashSet<Object>();
 
+	/*
+	 * 添加需要扫描的类
+	 */
 	public RestEasyApplication() {
 
 		// 业务异常处理
-		singletons.add(new BusinessExceptionHandle());
+		singletons.add(new com.wjy.exception.BusinessExceptionHandle());
 
 		// 请求过滤
 		singletons.add(new RequestFilter());
 
-		// 类
+		// 普通
 		singletons.add(new AuthorAPI());
 		singletons.add(new DesignTempletAPI());
 

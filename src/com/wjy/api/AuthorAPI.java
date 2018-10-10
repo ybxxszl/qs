@@ -27,11 +27,9 @@ public class AuthorAPI {
 	public Response login(@QueryParam(value = "authorAccount") String authorAccount,
 			@QueryParam(value = "authorPassword") String authorPassword) throws Exception {
 
+		LOGGER.info("authorAccoun: " + authorAccount + " authorPassword: " + authorPassword);
+
 		Author author = new Author(authorAccount, authorPassword);
-
-		System.out.println("Author:" + author.toString());
-
-		LOGGER.info("Author:" + author.toString());
 
 		return ResponseBuilder.success(authorDao.login(author));
 
@@ -41,9 +39,7 @@ public class AuthorAPI {
 	@Path(value = "/verify")
 	public Response verify(@QueryParam(value = "authorAccount") String authorAccount) throws Exception {
 
-		System.out.println("authorAccount:" + authorAccount);
-
-		LOGGER.info("authorAccount:" + authorAccount);
+		LOGGER.info("authorAccount: " + authorAccount);
 
 		return ResponseBuilder.success(authorDao.verify(authorAccount));
 
@@ -53,9 +49,7 @@ public class AuthorAPI {
 	@Path(value = "/register")
 	public Response verify(Author author) throws Exception {
 
-		System.out.println("Author:" + author.toString());
-
-		LOGGER.info("Author:" + author.toString());
+		LOGGER.info("author: " + author.toString());
 
 		return ResponseBuilder.success(authorDao.register(author));
 

@@ -1,4 +1,4 @@
-package com.wjy.mysql;
+package com.wjy.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

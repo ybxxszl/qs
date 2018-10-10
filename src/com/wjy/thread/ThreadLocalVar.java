@@ -3,7 +3,7 @@ package com.wjy.thread;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import com.wjy.mysql.JDBCUtil;
+import com.wjy.jdbc.JDBCUtil;
 
 /**
  * 定义线程变量

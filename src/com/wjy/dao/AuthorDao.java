@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.wjy.exception.BusinessException;
-import com.wjy.mysql.SQLUtil;
+import com.wjy.jdbc.SQLUtil;
 import com.wjy.util.UUIDUtil;
 import com.wjy.vo.Author;
 
@@ -30,8 +30,6 @@ public class AuthorDao extends SQLUtil {
 		}
 
 		Author a = authorList.get(0);
-
-		System.out.println("Author:" + a.toString());
 
 		LOGGER.info("Author:" + a.toString());
 

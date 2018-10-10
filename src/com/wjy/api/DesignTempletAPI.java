@@ -23,9 +23,7 @@ public class DesignTempletAPI {
 	@Path(value = "/getDesignTemplet")
 	public Response getDesignTemplet(@QueryParam(value = "designTempletId") String designTempletId) throws Exception {
 
-		System.out.println("designTempletId:" + designTempletId);
-
-		LOGGER.info("designTempletId:" + designTempletId);
+		LOGGER.info("designTempletId: " + designTempletId);
 
 		return ResponseBuilder.success(designTempletDao.getDesignTemplet(designTempletId));
 
