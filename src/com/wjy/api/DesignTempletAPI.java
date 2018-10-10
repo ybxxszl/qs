@@ -7,7 +7,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import com.wjy.dao.DesignTempletDao;
-import com.wjy.response.ResponseBuilder;
+import com.wjy.util.ResponseUtil;
 
 @Path(value = "/designTemplet")
 @Produces(value = "application/json;charset=utf-8")
@@ -19,9 +19,9 @@ public class DesignTempletAPI {
 	@Path(value = "/getDesignTemplet")
 	public Response getDesignTemplet(@QueryParam(value = "designTempletId") String designTempletId) throws Exception {
 
-		System.out.println(("designTempletId:" + designTempletId));
+		System.out.println("designTempletId:" + designTempletId);
 
-		return ResponseBuilder.success(designTempletDao.getDesignTemplet(designTempletId));
+		return ResponseUtil.success(designTempletDao.getDesignTemplet(designTempletId));
 
 	}
 

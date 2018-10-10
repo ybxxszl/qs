@@ -1,77 +1,75 @@
 package com.wjy.dao;
 
-import java.lang.reflect.InvocationTargetException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
-import com.wjy.log.LOG;
+import com.wjy.exception.BusinessException;
+import com.wjy.mysql.SQLUtil;
+import com.wjy.util.UUIDUtil;
 import com.wjy.vo.Author;
 
-public class AuthorDao {
+public class AuthorDao extends SQLUtil {
 
-	public List<Author> login(Author author) throws ClassNotFoundException, SQLException, InstantiationException,
-			IllegalAccessException, InvocationTargetException {
+	public Author login(Author author) throws Exception {
 
 		String sql = "SELECT author.author_id, author.author_account, author.author_password, author.author_name, author.author_sex, "
 				+ "author.author_birthday, author.author_phone, author.author_email, author.author_photo, author.author_state "
 				+ "FROM author WHERE author.author_account = ? AND author.author_password = ?";
 
-		// Object[] objects = new Object[] { author.getAuthor_account(),
-		// author.getAuthor_password() };
-		//
-		// getConnect();
-		//
-		// List<Author> list = Query(sql, objects, Author.class);
-		//
-		// getClose();
+		Object[] objects = new Object[] { author.getAuthor_account(), author.getAuthor_password() };
 
-		List<Author> list = new ArrayList<Author>();
+		List<Author> authorList = Query(sql, objects, Author.class);
 
-		return list;
+		if (authorList.size() == 0) {
+
+			throw new BusinessException("账号或密码错误，登录失败");
+
+		}
+
+		Author a = authorList.get(0);
+
+		System.out.println("Author:" + a.toString());
+
+		return a;
 
 	}
 
-	public int verify(Author author) throws ClassNotFoundException, SQLException, InstantiationException,
-			IllegalAccessException, InvocationTargetException {
+	public int verify(String authorAccount) throws Exception {
 
 		String sql = "SELECT author.author_id, author.author_account, author.author_password, author.author_name, author.author_sex, "
 				+ "author.author_birthday, author.author_phone, author.author_email, author.author_photo, author.author_state "
 				+ "FROM author WHERE author.author_account = ?";
 
-		// Object[] objects = new Object[] { author.getAuthor_account() };
-		//
-		// getConnect();
-		//
-		// List<Author> list = Query(sql, objects, Author.class);
-		//
-		// getClose();
+		Object[] objects = new Object[] { authorAccount };
 
-		List<Author> list = new ArrayList<Author>();
+		List<Author> authorList = Query(sql, objects, Author.class);
 
-		return list.size();
+		if (authorList.size() != 0) {
+
+			throw new BusinessException("账号已存在，请重新输入");
+
+		}
+
+		int num = authorList.size();
+
+		return num;
 
 	}
 
-	public int register(Author author) throws ClassNotFoundException, SQLException {
+	public int register(Author author) throws Exception {
 
 		String sql = "INSERT INTO AUTHOR(author.author_id, author.author_account, author.author_password, author.author_name, author.author_sex, "
 				+ "author.author_birthday, author.author_phone, author.author_email, author.author_photo, author.author_state) "
 				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-		// getConnect();
-		//
-		// int num = Update(sql, UUIDUtil.getUUID(), author.getAuthor_account(),
-		// author.getAuthor_password(),
-		// author.getAuthor_name(), author.getAuthor_sex(),
-		// author.getAuthor_birthday(), author.getAuthor_phone(),
-		// author.getAuthor_email(), "logo.jpg", 1);
-		//
-		// getClose();
+		int num = Update(sql, UUIDUtil.getUUID(), author.getAuthor_account(), author.getAuthor_password(),
+				author.getAuthor_name(), author.getAuthor_sex(), author.getAuthor_birthday(), author.getAuthor_phone(),
+				author.getAuthor_email(), "logo.jpg", 1);
 
-		int num = 0;
+		if (num == 0) {
+
+			throw new BusinessException("注册失败，请重新注册");
+
+		}
 
 		return num;
 

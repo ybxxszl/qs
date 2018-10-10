@@ -26,11 +26,11 @@ public class DesignTempletDao extends SQLUtil {
 
 		}
 
-		DesignTemplet designTemplet = designTempletList.get(0);
+		DesignTemplet dt = designTempletList.get(0);
 
-		System.out.println(("designTemplet:" + designTemplet.toString()));
+		System.out.println(("designTemplet:" + dt.toString()));
 
-		return designTemplet;
+		return dt;
 
 	}
 

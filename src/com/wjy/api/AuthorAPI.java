@@ -9,7 +9,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import com.wjy.dao.AuthorDao;
-import com.wjy.response.ResponseBuilder;
+import com.wjy.util.ResponseUtil;
 import com.wjy.vo.Author;
 
 @Path(value = "/author")
@@ -21,53 +21,33 @@ public class AuthorAPI {
 	@POST
 	@Path(value = "/login")
 	public Response login(@QueryParam(value = "authorAccount") String authorAccount,
-			@QueryParam(value = "authorPassword") String authorPassword) {
+			@QueryParam(value = "authorPassword") String authorPassword) throws Exception {
 
 		Author author = new Author(authorAccount, authorPassword);
 
-		try {
+		System.out.println("Author:" + author.toString());
 
-			return ResponseBuilder.success(authorDao.login(author));
-
-		} catch (Exception e) {
-
-			return ResponseBuilder.exception(e);
-
-		}
+		return ResponseUtil.success(authorDao.login(author));
 
 	}
 
 	@GET
 	@Path(value = "/verify")
-	public Response verify(@QueryParam(value = "authorAccount") String authorAccount) {
+	public Response verify(@QueryParam(value = "authorAccount") String authorAccount) throws Exception {
 
-		Author author = new Author(authorAccount);
+		System.out.println("authorAccount:" + authorAccount);
 
-		try {
-
-			return ResponseBuilder.success(authorDao.verify(author));
-
-		} catch (Exception e) {
-
-			return ResponseBuilder.exception(e);
-
-		}
+		return ResponseUtil.success(authorDao.verify(authorAccount));
 
 	}
 
 	@PUT
 	@Path(value = "/register")
-	public Response verify(Author author) {
+	public Response verify(Author author) throws Exception {
 
-		try {
+		System.out.println("Author:" + author.toString());
 
-			return ResponseBuilder.success(authorDao.register(author));
-
-		} catch (Exception e) {
-
-			return ResponseBuilder.exception(e);
-
-		}
+		return ResponseUtil.success(authorDao.register(author));
 
 	}
 
