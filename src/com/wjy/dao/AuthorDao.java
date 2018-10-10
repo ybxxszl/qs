@@ -12,8 +12,6 @@ import com.wjy.vo.Author;
 
 public class AuthorDao {
 
-	private static final Logger LOGGER = Logger.getLogger(Author.class);
-
 	public List<Author> login(Author author) throws ClassNotFoundException, SQLException, InstantiationException,
 			IllegalAccessException, InvocationTargetException {
 
@@ -31,10 +29,6 @@ public class AuthorDao {
 		// getClose();
 
 		List<Author> list = new ArrayList<Author>();
-
-		LOGGER.info(list);
-
-		LOG.pInfo(list);
 
 		return list;
 
@@ -57,10 +51,6 @@ public class AuthorDao {
 
 		List<Author> list = new ArrayList<Author>();
 
-		LOGGER.info(list);
-
-		LOG.pInfo(list);
-
 		return list.size();
 
 	}
@@ -82,10 +72,6 @@ public class AuthorDao {
 		// getClose();
 
 		int num = 0;
-
-		LOGGER.info(num);
-
-		LOG.pInfo(num);
 
 		return num;
 

@@ -6,39 +6,22 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-import org.apache.log4j.Logger;
-
 import com.wjy.dao.DesignTempletDao;
-import com.wjy.restful.ResponseBuilder;
-import com.wjy.vo.DesignTemplet;
+import com.wjy.response.ResponseBuilder;
 
 @Path(value = "/designTemplet")
 @Produces(value = "application/json;charset=utf-8")
 public class DesignTempletAPI {
 
-	private static final Logger LOGGER = Logger.getLogger(DesignTempletAPI.class);
-
 	private DesignTempletDao designTempletDao = new DesignTempletDao();
 
 	@GET
 	@Path(value = "/getDesignTemplet")
-	public Response getDesignTemplet(@QueryParam(value = "designTempletId") String designTempletId) {
+	public Response getDesignTemplet(@QueryParam(value = "designTempletId") String designTempletId) throws Exception {
 
-		DesignTemplet designTemplet = new DesignTemplet(designTempletId, "c5337055-7ae7-4227-b4f7-d65e94b45575");
+		System.out.println(("designTempletId:" + designTempletId));
 
-		LOGGER.info(designTemplet);
-
-		try {
-
-			return ResponseBuilder.success(designTempletDao.getDesignTemplet(designTemplet));
-
-		} catch (Exception e) {
-
-			LOGGER.error(e);
-
-			return ResponseBuilder.exception(e);
-
-		}
+		return ResponseBuilder.success(designTempletDao.getDesignTemplet(designTempletId));
 
 	}
 

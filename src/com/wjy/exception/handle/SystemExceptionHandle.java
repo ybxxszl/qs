@@ -4,7 +4,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import com.wjy.exception.SystemException;
-import com.wjy.restful.ResponseBuilder;
+import com.wjy.response.ResponseBuilder;
 
 public class SystemExceptionHandle implements ExceptionMapper<SystemException> {
 

@@ -1,4 +1,4 @@
-package com.wjy.util;
+package com.wjy.redis;
 
 public class RedisUtil {
 

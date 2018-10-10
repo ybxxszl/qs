@@ -1,8 +1,10 @@
-package com.wjy.util;
+package com.wjy.mysql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import com.wjy.util.PropertiesUtil;
 
 /**
  * @date 2018年10月9日

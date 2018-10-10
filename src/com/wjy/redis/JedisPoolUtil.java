@@ -1,4 +1,6 @@
-package com.wjy.util;
+package com.wjy.redis;
+
+import com.wjy.util.PropertiesUtil;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;

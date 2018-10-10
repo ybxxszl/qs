@@ -7,9 +7,7 @@ import java.util.Set;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 
-import org.apache.log4j.Logger;
-
-import com.wjy.restful.ResponseBuilder;
+import com.wjy.response.ResponseBuilder;
 import com.wjy.thread.ThreadLocalEnv;
 import com.wjy.thread.ThreadLocalVar;
 
@@ -19,8 +17,6 @@ import com.wjy.thread.ThreadLocalVar;
  * @description 请求过滤
  */
 public class RequestFilter implements ContainerRequestFilter {
-
-	private static final Logger LOGGER = Logger.getLogger(RequestFilter.class);
 
 	private static Set<String> ignore = new HashSet<String>();
 
@@ -43,7 +39,7 @@ public class RequestFilter implements ContainerRequestFilter {
 
 		String path = requestContext.getUriInfo().getPath();
 
-		LOGGER.info("请求路径：" + path);
+		System.out.println("请求路径：" + path);
 
 		Boolean verify = true;
 
@@ -64,7 +60,7 @@ public class RequestFilter implements ContainerRequestFilter {
 
 			String token = requestContext.getHeaderString("H-token");
 
-			LOGGER.info("authorId：" + authorId + " authorName：" + authorName + " token：" + token);
+			System.out.println(("authorId：" + authorId + " authorName：" + authorName + " token：" + token));
 
 			if (authorId == null && authorName == null && token == null) {
 
