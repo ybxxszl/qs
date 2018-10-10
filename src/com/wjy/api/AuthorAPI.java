@@ -9,7 +9,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import com.wjy.dao.AuthorDao;
-import com.wjy.util.ResponseUtil;
+import com.wjy.response.ResponseBuilder;
 import com.wjy.vo.Author;
 
 @Path(value = "/author")
@@ -27,7 +27,7 @@ public class AuthorAPI {
 
 		System.out.println("Author:" + author.toString());
 
-		return ResponseUtil.success(authorDao.login(author));
+		return ResponseBuilder.success(authorDao.login(author));
 
 	}
 
@@ -37,7 +37,7 @@ public class AuthorAPI {
 
 		System.out.println("authorAccount:" + authorAccount);
 
-		return ResponseUtil.success(authorDao.verify(authorAccount));
+		return ResponseBuilder.success(authorDao.verify(authorAccount));
 
 	}
 
@@ -47,7 +47,7 @@ public class AuthorAPI {
 
 		System.out.println("Author:" + author.toString());
 
-		return ResponseUtil.success(authorDao.register(author));
+		return ResponseBuilder.success(authorDao.register(author));
 
 	}
 

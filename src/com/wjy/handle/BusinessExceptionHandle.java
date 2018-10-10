@@ -4,14 +4,14 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import com.wjy.exception.BusinessException;
-import com.wjy.util.ResponseUtil;
+import com.wjy.response.ResponseBuilder;
 
 public class BusinessExceptionHandle implements ExceptionMapper<BusinessException> {
 
 	@Override
 	public Response toResponse(BusinessException exception) {
 
-		return ResponseUtil.exception(exception);
+		return ResponseBuilder.exception(exception);
 
 	}
 

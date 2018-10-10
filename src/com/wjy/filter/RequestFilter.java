@@ -7,9 +7,9 @@ import java.util.Set;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 
+import com.wjy.response.ResponseBuilder;
 import com.wjy.thread.ThreadLocalEnv;
 import com.wjy.thread.ThreadLocalVar;
-import com.wjy.util.ResponseUtil;
 
 /**
  * @date 2018年10月9日
@@ -64,7 +64,7 @@ public class RequestFilter implements ContainerRequestFilter {
 
 			if (authorId == null && authorName == null && token == null) {
 
-				requestContext.abortWith(ResponseUtil.response("请重新登录", 401));
+				requestContext.abortWith(ResponseBuilder.response("请重新登录", 401));
 
 			} else {
 

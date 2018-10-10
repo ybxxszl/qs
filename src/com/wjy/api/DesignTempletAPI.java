@@ -7,7 +7,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import com.wjy.dao.DesignTempletDao;
-import com.wjy.util.ResponseUtil;
+import com.wjy.response.ResponseBuilder;
 
 @Path(value = "/designTemplet")
 @Produces(value = "application/json;charset=utf-8")
@@ -21,7 +21,7 @@ public class DesignTempletAPI {
 
 		System.out.println("designTempletId:" + designTempletId);
 
-		return ResponseUtil.success(designTempletDao.getDesignTemplet(designTempletId));
+		return ResponseBuilder.success(designTempletDao.getDesignTemplet(designTempletId));
 
 	}
 
