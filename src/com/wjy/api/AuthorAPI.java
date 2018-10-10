@@ -8,6 +8,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import org.apache.log4j.Logger;
+
 import com.wjy.dao.AuthorDao;
 import com.wjy.response.ResponseBuilder;
 import com.wjy.vo.Author;
@@ -15,6 +17,8 @@ import com.wjy.vo.Author;
 @Path(value = "/author")
 @Produces(value = "application/json;charset=utf-8")
 public class AuthorAPI {
+
+	private static final Logger LOGGER = Logger.getLogger(AuthorAPI.class);
 
 	private AuthorDao authorDao = new AuthorDao();
 
@@ -27,6 +31,8 @@ public class AuthorAPI {
 
 		System.out.println("Author:" + author.toString());
 
+		LOGGER.info("Author:" + author.toString());
+
 		return ResponseBuilder.success(authorDao.login(author));
 
 	}
@@ -37,6 +43,8 @@ public class AuthorAPI {
 
 		System.out.println("authorAccount:" + authorAccount);
 
+		LOGGER.info("authorAccount:" + authorAccount);
+
 		return ResponseBuilder.success(authorDao.verify(authorAccount));
 
 	}
@@ -46,6 +54,8 @@ public class AuthorAPI {
 	public Response verify(Author author) throws Exception {
 
 		System.out.println("Author:" + author.toString());
+
+		LOGGER.info("Author:" + author.toString());
 
 		return ResponseBuilder.success(authorDao.register(author));
 

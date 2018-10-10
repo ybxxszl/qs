@@ -6,12 +6,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import org.apache.log4j.Logger;
+
 import com.wjy.dao.DesignTempletDao;
 import com.wjy.response.ResponseBuilder;
 
 @Path(value = "/designTemplet")
 @Produces(value = "application/json;charset=utf-8")
 public class DesignTempletAPI {
+
+	private static final Logger LOGGER = Logger.getLogger(DesignTempletAPI.class);
 
 	private DesignTempletDao designTempletDao = new DesignTempletDao();
 
@@ -20,6 +24,8 @@ public class DesignTempletAPI {
 	public Response getDesignTemplet(@QueryParam(value = "designTempletId") String designTempletId) throws Exception {
 
 		System.out.println("designTempletId:" + designTempletId);
+
+		LOGGER.info("designTempletId:" + designTempletId);
 
 		return ResponseBuilder.success(designTempletDao.getDesignTemplet(designTempletId));
 

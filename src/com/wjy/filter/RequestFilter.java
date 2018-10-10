@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 
+import org.apache.log4j.Logger;
+
 import com.wjy.response.ResponseBuilder;
 import com.wjy.thread.ThreadLocalEnv;
 import com.wjy.thread.ThreadLocalVar;
@@ -18,12 +20,14 @@ import com.wjy.thread.ThreadLocalVar;
  */
 public class RequestFilter implements ContainerRequestFilter {
 
+	private static final Logger LOGGER = Logger.getLogger(RequestFilter.class);
+
 	private static Set<String> ignore = new HashSet<String>();
 
 	// 忽略验证
 	static {
 
-		ignore.add("/testPath");
+		ignore.add("/testIgnore");
 
 	}
 
@@ -39,7 +43,17 @@ public class RequestFilter implements ContainerRequestFilter {
 
 		String path = requestContext.getUriInfo().getPath();
 
+		String authorId = requestContext.getHeaderString("H-authorId");
+
+		String token = requestContext.getHeaderString("H-token");
+
 		System.out.println("请求路径：" + path);
+
+		LOGGER.warn("请求路径：" + path);
+
+		System.out.println("authorId：" + authorId + " token：" + token);
+
+		LOGGER.warn("authorId：" + authorId + " token：" + token);
 
 		Boolean verify = true;
 
@@ -55,20 +69,21 @@ public class RequestFilter implements ContainerRequestFilter {
 
 		if (verify) {
 
-			String authorId = requestContext.getHeaderString("H-authorId");
-			String authorName = requestContext.getHeaderString("H-authorName");
+			if (token == null) {
 
-			String token = requestContext.getHeaderString("H-token");
-
-			System.out.println(("authorId：" + authorId + " authorName：" + authorName + " token：" + token));
-
-			if (authorId == null && authorName == null && token == null) {
-
-				requestContext.abortWith(ResponseBuilder.response("请重新登录", 401));
+				requestContext.abortWith(ResponseBuilder.error("请重新登录"));
 
 			} else {
 
-				ThreadLocalVar threadLocalVar = new ThreadLocalVar(authorId, authorName, token);
+				ThreadLocalVar threadLocalVar = new ThreadLocalVar();
+
+				threadLocalVar.setToken(token);
+
+				if (authorId != null) {
+
+					threadLocalVar.setAuthor_id(authorId);
+
+				}
 
 				ThreadLocalEnv.setENV(threadLocalVar);
 
@@ -76,7 +91,7 @@ public class RequestFilter implements ContainerRequestFilter {
 
 		} else {
 
-			ThreadLocalVar threadLocalVar = new ThreadLocalVar("testAuthorId", "testAuthorName", "testToken");
+			ThreadLocalVar threadLocalVar = new ThreadLocalVar("unAuthorId", "unToken");
 
 			ThreadLocalEnv.setENV(threadLocalVar);
 

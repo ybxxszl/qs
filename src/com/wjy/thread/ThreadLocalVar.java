@@ -15,7 +15,6 @@ import com.wjy.mysql.JDBCUtil;
 public class ThreadLocalVar {
 
 	private String author_id;
-	private String author_name;
 
 	private String token;
 
@@ -27,14 +26,6 @@ public class ThreadLocalVar {
 
 	public void setAuthor_id(String author_id) {
 		this.author_id = author_id;
-	}
-
-	public String getAuthor_name() {
-		return author_name;
-	}
-
-	public void setAuthor_name(String author_name) {
-		this.author_name = author_name;
 	}
 
 	public String getToken() {
@@ -73,10 +64,9 @@ public class ThreadLocalVar {
 		super();
 	}
 
-	public ThreadLocalVar(String author_id, String author_name, String token) {
+	public ThreadLocalVar(String author_id, String token) {
 		super();
 		this.author_id = author_id;
-		this.author_name = author_name;
 		this.token = token;
 	}
 
@@ -85,18 +75,16 @@ public class ThreadLocalVar {
 		this.conn = conn;
 	}
 
-	public ThreadLocalVar(String author_id, String author_name, String token, Connection conn) {
+	public ThreadLocalVar(String author_id, String token, Connection conn) {
 		super();
 		this.author_id = author_id;
-		this.author_name = author_name;
 		this.token = token;
 		this.conn = conn;
 	}
 
 	@Override
 	public String toString() {
-		return "ThreadLocalVar [author_id=" + author_id + ", author_name=" + author_name + ", token=" + token
-				+ ", conn=" + conn + "]";
+		return "ThreadLocalVar [author_id=" + author_id + ", token=" + token + ", conn=" + conn + "]";
 	}
 
 }

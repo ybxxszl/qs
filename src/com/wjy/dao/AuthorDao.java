@@ -2,12 +2,16 @@ package com.wjy.dao;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.wjy.exception.BusinessException;
 import com.wjy.mysql.SQLUtil;
 import com.wjy.util.UUIDUtil;
 import com.wjy.vo.Author;
 
 public class AuthorDao extends SQLUtil {
+
+	private static final Logger LOGGER = Logger.getLogger(AuthorDao.class);
 
 	public Author login(Author author) throws Exception {
 
@@ -28,6 +32,8 @@ public class AuthorDao extends SQLUtil {
 		Author a = authorList.get(0);
 
 		System.out.println("Author:" + a.toString());
+
+		LOGGER.info("Author:" + a.toString());
 
 		return a;
 

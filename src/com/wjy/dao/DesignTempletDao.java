@@ -2,12 +2,16 @@ package com.wjy.dao;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.wjy.exception.BusinessException;
 import com.wjy.thread.ThreadLocalEnv;
 import com.wjy.mysql.SQLUtil;
 import com.wjy.vo.DesignTemplet;
 
 public class DesignTempletDao extends SQLUtil {
+
+	private static final Logger LOGGER = Logger.getLogger(DesignTempletDao.class);
 
 	public DesignTemplet getDesignTemplet(String designTempletId) throws Exception {
 
@@ -29,6 +33,8 @@ public class DesignTempletDao extends SQLUtil {
 		DesignTemplet dt = designTempletList.get(0);
 
 		System.out.println(("designTemplet:" + dt.toString()));
+
+		LOGGER.info(dt.toString());
 
 		return dt;
 
