@@ -9,6 +9,7 @@ import javax.ws.rs.container.ContainerRequestFilter;
 
 import org.apache.log4j.Logger;
 
+import com.wjy.log.LOG;
 import com.wjy.response.ResponseBuilder;
 import com.wjy.thread.ThreadLocalEnv;
 import com.wjy.thread.ThreadLocalVar;
@@ -45,11 +46,15 @@ public class RequestFilter implements ContainerRequestFilter {
 
 		LOGGER.warn("请求路径：" + path);
 
+		LOG.pInfo("请求路径：" + path);
+
 		String authorId = requestContext.getHeaderString("H-AuthorId");
 
 		String token = requestContext.getHeaderString("H-Token");
 
 		LOGGER.warn("H-AuthorId: " + authorId + " H-Token: " + token);
+
+		LOG.pInfo("H-AuthorId: " + authorId + " H-Token: " + token);
 
 		Boolean verify = true;
 

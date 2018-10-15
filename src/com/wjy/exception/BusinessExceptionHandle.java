@@ -6,6 +6,7 @@ import javax.ws.rs.ext.ExceptionMapper;
 import org.apache.log4j.Logger;
 
 import com.wjy.exception.BusinessException;
+import com.wjy.log.LOG;
 import com.wjy.response.ResponseBuilder;
 
 /**
@@ -21,6 +22,8 @@ public class BusinessExceptionHandle implements ExceptionMapper<BusinessExceptio
 	public Response toResponse(BusinessException exception) {
 
 		LOGGER.info("业务异常：" + exception.getMessage());
+
+		LOG.pInfo("业务异常：" + exception.getMessage());
 
 		return ResponseBuilder.exception(exception);
 
