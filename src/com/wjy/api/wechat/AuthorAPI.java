@@ -6,14 +6,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-import com.wjy.dao.AuthorDao;
 import com.wjy.log.LOG;
 
 @Path(value = "/author")
 @Produces(value = "application/json;charset=utf-8")
 public class AuthorAPI {
-
-	private AuthorDao authorDao = new AuthorDao();
 
 	@GET
 	@Path(value = "/getAuthor")
