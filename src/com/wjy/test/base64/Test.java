@@ -7,8 +7,6 @@ import sun.misc.BASE64Encoder;
 
 public class Test {
 
-	// https://www.cnblogs.com/xiekeli/p/5607107.html
-	// https://ninghao.net/course/5509
 	public static void main(String[] args) {
 
 		encoder();
