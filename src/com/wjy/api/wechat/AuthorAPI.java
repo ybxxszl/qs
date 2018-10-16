@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 
 import com.wjy.log.LOG;
 
-@Path(value = "/author")
+@Path(value = "/wechat/author")
 @Produces(value = "application/json;charset=utf-8")
 public class AuthorAPI {
 
