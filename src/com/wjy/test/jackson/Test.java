@@ -1,6 +1,7 @@
-package com.wjy.test;
+package com.wjy.test.jackson;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -9,17 +10,13 @@ import java.util.Map.Entry;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
-public class test {
+public class Test {
 
 	private static ObjectMapper mapper = new ObjectMapper();
 
 	public static void main(String[] args) throws IOException {
-
-		Author author1 = new Author("author_account", "author_password");
-
-		Author author2 = new Author("author_id", "author_account", "author_password", "author_name", "author_sex",
-				"author_phone", "author_email", "author_photo");
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -27,13 +24,19 @@ public class test {
 		map.put("age", 23);
 		map.put("interests", new String[] { "lol", "music" });
 
-		test1(author1);
+		Info info = new Info("18743102774", "1062837400@qq.com");
 
-		test2(map);
+		User user = new User("001", "王军岩", "wjy", "1234", null, 1, new Date());
+
+		UserInfo userInfo = new UserInfo(user, info);
+
+		test1(map);
+
+		test2(userInfo);
 
 	}
 
-	private static void test2(Map<String, Object> map) throws IOException {
+	private static void test1(Map<String, Object> map) throws IOException {
 
 		String content = mapper.writeValueAsString(map);
 
@@ -87,15 +90,17 @@ public class test {
 
 	}
 
-	private static void test1(Author author1) throws IOException {
+	private static void test2(UserInfo userInfo) throws IOException {
 
-		String content = mapper.writeValueAsString(author1);
+		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+		String content = mapper.writeValueAsString(userInfo);
 
 		System.out.println(content);
 
-		Author a = mapper.readValue(content, Author.class);
+		UserInfo ui = mapper.readValue(content, UserInfo.class);
 
-		System.out.println(a.toString());
+		System.out.println(ui.toString());
 
 	}
 
