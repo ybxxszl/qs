@@ -9,13 +9,13 @@ import com.wjy.log.LOG;
  * @author ybxxszl
  * @description 通用日志
  */
-public abstract class LOGUtil {
+public abstract class GeneralLOG {
 
 	protected Logger LOGGER = null;
 
 	protected LOG LOG = null;
 
-	public LOGUtil() {
+	public GeneralLOG() {
 
 		super();
 
