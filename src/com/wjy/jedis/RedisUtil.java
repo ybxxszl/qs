@@ -71,4 +71,21 @@ public class RedisUtil {
 
 	}
 
+	/**
+	 * @date 2018年10月19日
+	 * @author ybxxszl
+	 * @description TODO
+	 * @param key
+	 *            键
+	 */
+	public static void del(String key) {
+
+		Jedis jedis = JedisPoolUtil.getInstance().getResource();
+
+		jedis.del(key);
+
+		jedis.close();
+
+	}
+
 }
