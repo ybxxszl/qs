@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.ws.rs.core.Response;
 
 import com.wjy.exception.BusinessException;
-import com.wjy.exception.SystemExceptionMessage;
 import com.wjy.util.JSONUtil;
 
 /**
@@ -69,27 +68,27 @@ public class ResponseBuilder {
 
 		if (e instanceof NullPointerException) {
 
-			message = SystemExceptionMessage.ERROR_101;
+			message = ERROR_101;
 
 		} else if (e instanceof IndexOutOfBoundsException) {
 
-			message = SystemExceptionMessage.ERROR_102;
+			message = ERROR_102;
 
 		} else if (e instanceof IllegalAccessException) {
 
-			message = SystemExceptionMessage.ERROR_103;
+			message = ERROR_103;
 
 		} else if (e instanceof ArrayIndexOutOfBoundsException) {
 
-			message = SystemExceptionMessage.ERROR_104;
+			message = ERROR_104;
 
 		} else if (e instanceof ClassNotFoundException) {
 
-			message = SystemExceptionMessage.ERROR_105;
+			message = ERROR_105;
 
 		} else if (e instanceof SQLException) {
 
-			message = SystemExceptionMessage.ERROR_106;
+			message = ERROR_106;
 
 		} else if (e instanceof BusinessException) {
 
@@ -97,12 +96,27 @@ public class ResponseBuilder {
 
 		} else {
 
-			message = SystemExceptionMessage.ERROR_100;
+			message = ERROR_100;
 
 		}
 
 		return error(message);
 
 	}
+
+	// 未知异常
+	private final static String ERROR_100 = "ERROR_100 [UnknownException]";
+	// 空指针异常
+	private final static String ERROR_101 = "ERROR_101 [NullPointerException]";
+	// 下标越界异常
+	private final static String ERROR_102 = "ERROR_102 [IndexOutOfBoundsException]";
+	// 安全权限异常
+	private final static String ERROR_103 = "ERROR_103 [IllegalAccessException]";
+	// 角标异常
+	private final static String ERROR_104 = "ERROR_104 [ArrayIndexOutOfBoundsException]";
+	// 类找不到异常
+	private final static String ERROR_105 = "ERROR_105 [ClassNotFoundException]";
+	// SQL异常
+	private final static String ERROR_106 = "ERROR_106 [SQLException]";
 
 }

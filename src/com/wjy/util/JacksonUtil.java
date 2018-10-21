@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class JacksonUtil {
 
-	private static ObjectMapper mapper = new ObjectMapper();
+	private static final ObjectMapper mapper = new ObjectMapper();
 
 	public static ObjectMapper getObjectMapper() {
 		return mapper;
