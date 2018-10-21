@@ -2,7 +2,7 @@ package com.wjy.response;
 
 import com.wjy.exception.BusinessException;
 
-public class Return {
+public class ReturnBuilder {
 
 	// 状态码
 	private Integer code;
@@ -37,11 +37,11 @@ public class Return {
 		this.msg = msg;
 	}
 
-	public Return() {
+	public ReturnBuilder() {
 		super();
 	}
 
-	public Return(Integer code, Object data, String msg) {
+	public ReturnBuilder(Integer code, Object data, String msg) {
 		super();
 		this.code = code;
 		this.data = data;
@@ -62,9 +62,9 @@ public class Return {
 	 * @param msg
 	 * @return Return
 	 */
-	public static Return build(Integer code, Object data, String msg) {
+	public static ReturnBuilder build(Integer code, Object data, String msg) {
 
-		return new Return(code, data, msg);
+		return new ReturnBuilder(code, data, msg);
 
 	}
 
@@ -75,9 +75,9 @@ public class Return {
 	 * @param data
 	 * @return Return
 	 */
-	public static Return successData(Object data) {
+	public static ReturnBuilder successData(Object data) {
 
-		return new Return(200, data, null);
+		return new ReturnBuilder(200, data, null);
 
 	}
 
@@ -88,9 +88,9 @@ public class Return {
 	 * @param msg
 	 * @return Return
 	 */
-	public static Return successMsg(String msg) {
+	public static ReturnBuilder successMsg(String msg) {
 
-		return new Return(200, null, msg);
+		return new ReturnBuilder(200, null, msg);
 
 	}
 
@@ -102,9 +102,9 @@ public class Return {
 	 * @param msg
 	 * @return Return
 	 */
-	public static Return successDataAndMsg(Object data, String msg) {
+	public static ReturnBuilder successDataAndMsg(Object data, String msg) {
 
-		return new Return(200, data, msg);
+		return new ReturnBuilder(200, data, msg);
 
 	}
 
@@ -115,9 +115,9 @@ public class Return {
 	 * @param exception
 	 * @return Return
 	 */
-	public static Return errorBusinessException(BusinessException exception) {
+	public static ReturnBuilder errorBusinessException(BusinessException exception) {
 
-		return new Return(500, null, exception.getMessage());
+		return new ReturnBuilder(500, null, exception.getMessage());
 
 	}
 
@@ -128,9 +128,9 @@ public class Return {
 	 * @param exception
 	 * @return Return
 	 */
-	public static Return errorSystemException(Exception exception) {
+	public static ReturnBuilder errorSystemException(Exception exception) {
 
-		return new Return(600, null, exception.getMessage());
+		return new ReturnBuilder(600, null, exception.getMessage());
 
 	}
 

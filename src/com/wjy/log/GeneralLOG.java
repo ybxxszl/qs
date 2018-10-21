@@ -11,9 +11,9 @@ import com.wjy.log.LOG;
  */
 public abstract class GeneralLOG {
 
-	protected Logger LOGGER = null;
+	protected static Logger LOGGER = null;
 
-	protected LOG LOG = null;
+	protected static LOG LOG = null;
 
 	public GeneralLOG() {
 
