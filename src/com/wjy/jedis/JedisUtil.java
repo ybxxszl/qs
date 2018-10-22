@@ -2,15 +2,16 @@ package com.wjy.jedis;
 
 import com.wjy.util.PropertiesUtil;
 
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 /**
- * @date 2018年10月10日
+ * @date 2018年10月22日
  * @author ybxxszl
- * @description JedisPool池工具类
+ * @description Jedis工具类
  */
-public class JedisPoolUtil {
+public class JedisUtil {
 
 	private static String host;
 	private static String port;
@@ -24,6 +25,8 @@ public class JedisPoolUtil {
 	private static String testOnReturn;
 
 	private static JedisPool jedisPool;
+
+	private static Jedis jedis;
 
 	static {
 
@@ -49,17 +52,19 @@ public class JedisPoolUtil {
 		jedisPool = new JedisPool(config, host, Integer.valueOf(port), Integer.valueOf(timeOut), password,
 				Integer.valueOf(database));
 
+		jedis = jedisPool.getResource();
+
 	}
 
-	/**
-	 * @date 2018年10月10日
-	 * @author ybxxszl
-	 * @description 获取JedisPool池
-	 * @return JedisPool JedisPool池
-	 */
-	public static JedisPool getInstance() {
+	public static JedisPool getJedisPool() {
 
 		return jedisPool;
+
+	}
+
+	public static Jedis getJedis() {
+
+		return jedis;
 
 	}
 

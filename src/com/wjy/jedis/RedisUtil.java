@@ -1,5 +1,9 @@
 package com.wjy.jedis;
 
+import java.util.List;
+
+import com.wjy.test.queue.JedisPubSubListener;
+
 import redis.clients.jedis.Jedis;
 
 /**
@@ -22,7 +26,7 @@ public class RedisUtil {
 	 */
 	public static void set(String key, String value, int seconds) {
 
-		Jedis jedis = JedisPoolUtil.getInstance().getResource();
+		Jedis jedis = JedisUtil.getJedisPool().getResource();
 
 		jedis.set(key, value);
 
@@ -43,7 +47,7 @@ public class RedisUtil {
 	 */
 	public static void set(String key, String value) {
 
-		Jedis jedis = JedisPoolUtil.getInstance().getResource();
+		Jedis jedis = JedisUtil.getJedisPool().getResource();
 
 		jedis.set(key, value);
 
@@ -61,7 +65,7 @@ public class RedisUtil {
 	 */
 	public static String get(String key) {
 
-		Jedis jedis = JedisPoolUtil.getInstance().getResource();
+		Jedis jedis = JedisUtil.getJedisPool().getResource();
 
 		String value = jedis.get(key);
 
@@ -80,9 +84,110 @@ public class RedisUtil {
 	 */
 	public static void del(String key) {
 
-		Jedis jedis = JedisPoolUtil.getInstance().getResource();
+		Jedis jedis = JedisUtil.getJedisPool().getResource();
 
 		jedis.del(key);
+
+		jedis.close();
+
+	}
+
+	public static int lpush(String key, String... values) {
+
+		Jedis jedis = JedisUtil.getJedisPool().getResource();
+
+		Long num = jedis.lpush(key, values);
+
+		jedis.close();
+
+		return num.intValue();
+
+	}
+
+	public static int rpush(String key, String... values) {
+
+		Jedis jedis = JedisUtil.getJedisPool().getResource();
+
+		Long num = jedis.rpush(key, values);
+
+		jedis.close();
+
+		return num.intValue();
+
+	}
+
+	public static String lpop(String key) {
+
+		Jedis jedis = JedisUtil.getJedisPool().getResource();
+
+		String value = jedis.lpop(key);
+
+		jedis.close();
+
+		return value;
+
+	}
+
+	public static String rpop(String key) {
+
+		Jedis jedis = JedisUtil.getJedisPool().getResource();
+
+		String value = jedis.rpop(key);
+
+		jedis.close();
+
+		return value;
+
+	}
+
+	public static List<String> blpop(int timeout, String... keys) {
+
+		Jedis jedis = JedisUtil.getJedisPool().getResource();
+
+		List<String> value = jedis.blpop(timeout, keys);
+
+		jedis.close();
+
+		return value;
+
+	}
+
+	/*
+	 * 队列中有信息时返回，没有会一直阻塞，直至超时并返回null 支持多个队列，取出优先级高的队列中的信息
+	 * timeout表示阻塞限制时间，如果为0，并且队列中没有信息，一直阻塞
+	 */
+	public static List<String> brpop(int timeout, String... keys) {
+
+		Jedis jedis = JedisUtil.getJedisPool().getResource();
+
+		List<String> value = jedis.brpop(timeout, keys);
+
+		jedis.close();
+
+		return value;
+
+	}
+
+	public static int publish(String channel, String message) {
+
+		Jedis jedis = JedisUtil.getJedisPool().getResource();
+
+		Long num = jedis.publish(channel, message);
+
+		jedis.close();
+
+		return num.intValue();
+
+	}
+
+	/*
+	 * JedisPubSub监听
+	 */
+	public static void subscribe(JedisPubSubListener listener, String... channels) {
+
+		Jedis jedis = JedisUtil.getJedisPool().getResource();
+
+		jedis.subscribe(listener, channels);
 
 		jedis.close();
 
