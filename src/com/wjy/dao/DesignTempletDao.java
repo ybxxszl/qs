@@ -3,6 +3,7 @@ package com.wjy.dao;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.junit.Test;
 
 import com.wjy.exception.BusinessException;
 import com.wjy.jdbc.SQLUtil;
@@ -14,6 +15,7 @@ public class DesignTempletDao extends SQLUtil {
 
 	private static final Logger LOGGER = Logger.getLogger(DesignTempletDao.class);
 
+	@Test
 	public DesignTemplet getDesignTemplet(String designTempletId) throws Exception {
 
 		String sql = "SELECT design_templet.design_templet_id, design_templet.design_templet_name, "
