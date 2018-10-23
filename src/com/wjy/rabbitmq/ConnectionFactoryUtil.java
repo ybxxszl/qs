@@ -1,4 +1,4 @@
-package com.wjy.mq.rabbit;
+package com.wjy.rabbitmq;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;

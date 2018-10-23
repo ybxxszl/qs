@@ -1,4 +1,4 @@
-package com.wjy.mq.rabbit;
+package com.wjy.test.queue.rabbitmq;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -31,18 +31,34 @@ public class SendMQ {
 		 */
 		channel.queueDeclare("TestQueue", false, false, false, null);
 
-		/*
-		 * 发送消息
-		 * 
-		 * @exchange 交换机名称
-		 * 
-		 * @routingKey 队列名称
-		 * 
-		 * @props 其他属性
-		 * 
-		 * @body 消息
-		 */
-		channel.basicPublish("", "TestQueue", null, "Hello".getBytes());
+		for (int i = 1; i <= 10; i++) {
+
+			/*
+			 * 发送消息
+			 * 
+			 * @exchange 交换机名称
+			 * 
+			 * @routingKey 队列名称
+			 * 
+			 * @props 其他属性
+			 * 
+			 * @body 消息
+			 */
+			channel.basicPublish("", "TestQueue", null, ("Hello" + i).getBytes());
+
+			System.out.println("第" + i + "条消息发送完成");
+
+			try {
+
+				Thread.sleep(1000);
+
+			} catch (InterruptedException e) {
+
+				e.printStackTrace();
+
+			}
+
+		}
 
 		channel.close();
 		connection.close();
