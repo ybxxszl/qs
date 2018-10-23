@@ -1,4 +1,4 @@
-package com.wjy.rabbitmq;
+package com.wjy.mq.rabbitmq;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -6,7 +6,7 @@ import java.util.concurrent.TimeoutException;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 
-public class ReceMQ {
+public class ReceMQWorkOne {
 
 	public static void main(String[] args) throws IOException, TimeoutException {
 
@@ -26,12 +26,23 @@ public class ReceMQ {
 		 * 
 		 * @arguments 其他属性
 		 */
-		channel.queueDeclare("TestQueue", false, false, false, null);
+		channel.queueDeclare("TestQueue", true, false, false, null);
+
+		/*
+		 * @prefetchSize 0
+		 * 
+		 * @prefetchCount 每次从队列中接收的消息数量
+		 * 
+		 * @global true/false channel级别/consumer级别
+		 */
+		channel.basicQos(1);
+		
+		System.out.println("One");
 
 		ReceConsumer consumer = new ReceConsumer(channel);
 
 		// 消息确认机制
-		channel.basicConsume("TestQueue", true, consumer);
+		channel.basicConsume("TestQueue", false, consumer);
 
 	}
 

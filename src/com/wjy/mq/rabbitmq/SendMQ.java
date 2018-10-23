@@ -1,4 +1,4 @@
-package com.wjy.rabbitmq;
+package com.wjy.mq.rabbitmq;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -31,7 +31,7 @@ public class SendMQ {
 		 */
 		channel.queueDeclare("TestQueue", false, false, false, null);
 
-		for (int i = 1; i <= 10; i++) {
+		for (int i = 1; i <= 100; i++) {
 
 			/*
 			 * 发送消息

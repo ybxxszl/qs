@@ -1,7 +1,4 @@
-package com.wjy.rabbitmq;
-
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
+package com.wjy.mq.rabbitmq;
 
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -32,9 +29,22 @@ public class ConnectionFactoryUtil {
 
 	}
 
-	public static Connection getConnection() throws IOException, TimeoutException {
+	public static Connection getConnection() {
 
-		return connectionFactory.newConnection();
+		Connection connection = null;
+
+		try {
+
+			connection = connectionFactory.newConnection();
+
+		} catch (Exception e) {
+
+			System.out.println("Rabbit连接获取失败！！！");
+			e.printStackTrace();
+
+		}
+
+		return connection;
 
 	}
 
