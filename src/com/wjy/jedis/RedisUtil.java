@@ -2,7 +2,7 @@ package com.wjy.jedis;
 
 import java.util.List;
 
-import com.wjy.test.queue.JedisPubSubListener;
+import com.wjy.test.queue.ps.main.JedisPubSubListener;
 
 import redis.clients.jedis.Jedis;
 
@@ -26,7 +26,7 @@ public class RedisUtil {
 	 */
 	public static void set(String key, String value, int seconds) {
 
-		Jedis jedis = JedisUtil.getJedisPool().getResource();
+		Jedis jedis = JedisUtil.getJedis();
 
 		jedis.set(key, value);
 
@@ -47,7 +47,7 @@ public class RedisUtil {
 	 */
 	public static void set(String key, String value) {
 
-		Jedis jedis = JedisUtil.getJedisPool().getResource();
+		Jedis jedis = JedisUtil.getJedis();
 
 		jedis.set(key, value);
 
@@ -65,7 +65,7 @@ public class RedisUtil {
 	 */
 	public static String get(String key) {
 
-		Jedis jedis = JedisUtil.getJedisPool().getResource();
+		Jedis jedis = JedisUtil.getJedis();
 
 		String value = jedis.get(key);
 
@@ -84,7 +84,7 @@ public class RedisUtil {
 	 */
 	public static void del(String key) {
 
-		Jedis jedis = JedisUtil.getJedisPool().getResource();
+		Jedis jedis = JedisUtil.getJedis();
 
 		jedis.del(key);
 
@@ -94,7 +94,7 @@ public class RedisUtil {
 
 	public static int lpush(String key, String... values) {
 
-		Jedis jedis = JedisUtil.getJedisPool().getResource();
+		Jedis jedis = JedisUtil.getJedis();
 
 		Long num = jedis.lpush(key, values);
 
@@ -106,7 +106,7 @@ public class RedisUtil {
 
 	public static int rpush(String key, String... values) {
 
-		Jedis jedis = JedisUtil.getJedisPool().getResource();
+		Jedis jedis = JedisUtil.getJedis();
 
 		Long num = jedis.rpush(key, values);
 
@@ -118,7 +118,7 @@ public class RedisUtil {
 
 	public static String lpop(String key) {
 
-		Jedis jedis = JedisUtil.getJedisPool().getResource();
+		Jedis jedis = JedisUtil.getJedis();
 
 		String value = jedis.lpop(key);
 
@@ -130,7 +130,7 @@ public class RedisUtil {
 
 	public static String rpop(String key) {
 
-		Jedis jedis = JedisUtil.getJedisPool().getResource();
+		Jedis jedis = JedisUtil.getJedis();
 
 		String value = jedis.rpop(key);
 
@@ -142,7 +142,7 @@ public class RedisUtil {
 
 	public static List<String> blpop(int timeout, String... keys) {
 
-		Jedis jedis = JedisUtil.getJedisPool().getResource();
+		Jedis jedis = JedisUtil.getJedis();
 
 		List<String> value = jedis.blpop(timeout, keys);
 
@@ -158,7 +158,7 @@ public class RedisUtil {
 	 */
 	public static List<String> brpop(int timeout, String... keys) {
 
-		Jedis jedis = JedisUtil.getJedisPool().getResource();
+		Jedis jedis = JedisUtil.getJedis();
 
 		List<String> value = jedis.brpop(timeout, keys);
 
@@ -170,7 +170,7 @@ public class RedisUtil {
 
 	public static int publish(String channel, String message) {
 
-		Jedis jedis = JedisUtil.getJedisPool().getResource();
+		Jedis jedis = JedisUtil.getJedis();
 
 		Long num = jedis.publish(channel, message);
 
@@ -185,7 +185,7 @@ public class RedisUtil {
 	 */
 	public static void subscribe(JedisPubSubListener listener, String... channels) {
 
-		Jedis jedis = JedisUtil.getJedisPool().getResource();
+		Jedis jedis = JedisUtil.getJedis();
 
 		jedis.subscribe(listener, channels);
 

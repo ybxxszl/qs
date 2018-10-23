@@ -6,8 +6,8 @@ public class Test {
 
 	public static void main(String[] args) {
 
-		Jedis jedis1 = JedisFactory.getJedisPool().getResource();
-		Jedis jedis2 = JedisFactory.getJedisPool().getResource();
+		Jedis jedis1 = JedisFactory.getJedis();
+		Jedis jedis2 = JedisFactory.getJedis();
 
 		JedisPubSubListener listener = new JedisPubSubListener();
 

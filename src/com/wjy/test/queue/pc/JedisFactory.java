@@ -21,8 +21,6 @@ public class JedisFactory {
 
 	private static JedisPool jedisPool;
 
-	private static Jedis jedis;
-
 	static {
 
 		host = PropertiesUtil.getValue("redis.host");
@@ -47,19 +45,11 @@ public class JedisFactory {
 		jedisPool = new JedisPool(config, host, Integer.valueOf(port), Integer.valueOf(timeOut), password,
 				Integer.valueOf(database));
 
-		jedis = jedisPool.getResource();
-
-	}
-
-	public static JedisPool getJedisPool() {
-
-		return jedisPool;
-
 	}
 
 	public static Jedis getJedis() {
 
-		return jedis;
+		return jedisPool.getResource();
 
 	}
 

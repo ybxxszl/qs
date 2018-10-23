@@ -1,4 +1,4 @@
-package com.wjy.test.queue;
+package com.wjy.test.queue.ps.main;
 
 import com.wjy.jedis.RedisUtil;
 
