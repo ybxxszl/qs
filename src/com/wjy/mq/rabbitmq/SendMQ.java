@@ -31,7 +31,7 @@ public class SendMQ {
 		 */
 		channel.queueDeclare("TestQueue", false, false, false, null);
 
-		for (int i = 1; i <= 100; i++) {
+		for (int i = 1; i < 10; i++) {
 
 			/*
 			 * 发送消息
