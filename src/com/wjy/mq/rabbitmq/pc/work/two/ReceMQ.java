@@ -5,6 +5,7 @@ import java.util.concurrent.TimeoutException;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
+import com.wjy.mq.rabbitmq.MQInfo;
 import com.wjy.rabbit.ConnectionFactoryUtil;
 
 public class ReceMQ {
@@ -29,7 +30,7 @@ public class ReceMQ {
 		 * 
 		 * @arguments 其他属性
 		 */
-		channel.queueDeclare("TestQueue", false, false, false, null);
+		channel.queueDeclare(MQInfo.getQueueName(), false, false, false, null);
 
 		/*
 		 * @prefetchCount 每次从队列中接收的消息数量
@@ -47,7 +48,7 @@ public class ReceMQ {
 		 * 
 		 * @callback 消息处理
 		 */
-		channel.basicConsume("TestQueue", false, consumer);
+		channel.basicConsume(MQInfo.getQueueName(), false, consumer);
 
 	}
 

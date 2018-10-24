@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
+import com.wjy.test.mq.rabbitmq.MQInfo;
 
 public class SendMQ {
 
@@ -29,22 +30,22 @@ public class SendMQ {
 		 * 
 		 * @arguments 其他属性
 		 */
-		channel.queueDeclare("TestQueue", false, false, false, null);
+		channel.queueDeclare(MQInfo.getQueueName(), false, false, false, null);
 
-		for (int i = 1; i <= 10; i++) {
+		for (int i = 1; i < 10; i++) {
 
 			/*
 			 * 发送消息
 			 * 
 			 * @exchange 交换机名称
 			 * 
-			 * @routingKey 队列名称
+			 * @routingKey 路由键
 			 * 
 			 * @props 其他属性
 			 * 
 			 * @body 消息
 			 */
-			channel.basicPublish("", "TestQueue", null, ("Hello" + i).getBytes());
+			channel.basicPublish("", MQInfo.getQueueName(), null, ("Hello" + i).getBytes());
 
 			System.out.println("第" + i + "条消息发送完成");
 

@@ -20,6 +20,16 @@ public class ReceConsumer extends DefaultConsumer {
 	public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties, byte[] body)
 			throws IOException {
 
+		try {
+
+			Thread.sleep(2000);
+
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+
+		}
+
 		/*
 		 * Ack消息
 		 * 
@@ -38,7 +48,7 @@ public class ReceConsumer extends DefaultConsumer {
 		 * 
 		 * @requeue 被拒绝的消息是否重新加入队列
 		 */
-		channel.basicNack(envelope.getDeliveryTag(), false, true);
+		// channel.basicNack(envelope.getDeliveryTag(), false, true);
 
 		System.out.println("message: " + new String(body));
 

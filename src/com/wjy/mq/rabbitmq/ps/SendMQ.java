@@ -1,4 +1,4 @@
-package com.wjy.mq.rabbitmq.pc;
+package com.wjy.mq.rabbitmq.ps;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import com.wjy.mq.rabbitmq.MQInfo;
 import com.wjy.rabbit.ConnectionFactoryUtil;
+import com.wjy.test.mq.rabbitmq.MQInfo;
 
 public class SendMQ {
 
@@ -21,17 +21,17 @@ public class SendMQ {
 		/*
 		 * 声明队列
 		 * 
-		 * @queue 队列名称
+		 * @exchange 交换机名称
+		 * 
+		 * @type 交换机类型：fanout、direct、topic
 		 * 
 		 * @durable 是否持久化，即服务器重启时生存
 		 * 
-		 * @exclusive 独占队列，创建者可以使用的私有队列，断开后自动删除
-		 * 
-		 * @autoDelete 所有消费者客户端断开后是否自动删除
+		 * @autoDelete 所有订阅者客户端断开后是否自动删除
 		 * 
 		 * @arguments 其他属性
 		 */
-		channel.queueDeclare(MQInfo.getQueueName(), false, false, false, null);
+		channel.exchangeDeclare(MQInfo.getExchangeName(), "fanout", false, false, null);
 
 		for (int i = 1; i < 10; i++) {
 
@@ -46,7 +46,7 @@ public class SendMQ {
 			 * 
 			 * @body 消息
 			 */
-			channel.basicPublish("", MQInfo.getQueueName(), null, ("Hello" + i).getBytes());
+			channel.basicPublish(MQInfo.getExchangeName(), "", null, ("Hello" + i).getBytes());
 
 			System.out.println("第" + i + "条消息发送完成");
 

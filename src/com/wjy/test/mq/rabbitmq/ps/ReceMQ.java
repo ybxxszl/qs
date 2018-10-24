@@ -1,4 +1,4 @@
-package com.wjy.test.mq.rabbitmq.pc;
+package com.wjy.test.mq.rabbitmq.ps;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -17,22 +17,36 @@ public class ReceMQ {
 		/*
 		 * 声明队列
 		 * 
-		 * @queue 队列名称
+		 * @exchange 交换机名称
+		 * 
+		 * @type 交换机类型：fanout、direct、topic
 		 * 
 		 * @durable 是否持久化，即服务器重启时生存
 		 * 
-		 * @exclusive 独占队列，创建者可以使用的私有队列，断开后自动删除
-		 * 
-		 * @autoDelete 所有消费者客户端断开后是否自动删除
+		 * @autoDelete 所有订阅者客户端断开后是否自动删除
 		 * 
 		 * @arguments 其他属性
 		 */
-		channel.queueDeclare(MQInfo.getQueueName(), false, false, false, null);
+		channel.exchangeDeclare(MQInfo.getExchangeName(), "fanout", false, false, null);
+
+		// 获取随机的队列名称
+		String queue = channel.queueDeclare().getQueue();
+
+		/*
+		 * @queue 队列名称
+		 * 
+		 * @exchange 交换机名称
+		 * 
+		 * @routingKey 路由键
+		 * 
+		 * @arguments 其他属性
+		 */
+		channel.queueBind(queue, MQInfo.getExchangeName(), "", null);
 
 		ReceConsumer consumer = new ReceConsumer(channel);
 
 		// 消息确认机制
-		channel.basicConsume(MQInfo.getQueueName(), true, consumer);
+		channel.basicConsume(queue, true, consumer); // 随机的队列自动删除
 
 	}
 
