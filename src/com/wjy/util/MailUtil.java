@@ -16,7 +16,7 @@ import javax.mail.internet.MimeMessage;
 /*
  * 邮件工具类
  */
-public class SendMailUtil {
+public class MailUtil {
 
 	/**
 	 * 发送邮件
