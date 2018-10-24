@@ -19,11 +19,11 @@ public class SendMQ {
 		Channel channel = connection.createChannel();
 
 		/*
-		 * 声明队列
+		 * 声明队列：发布者/订阅者
 		 * 
 		 * @exchange 交换机名称
 		 * 
-		 * @type 交换机类型：fanout、direct、topic
+		 * @type 交换机类型：fanout（分发：将消息推送给所有已订阅的订阅者）
 		 * 
 		 * @durable 是否持久化，即服务器重启时生存
 		 * 

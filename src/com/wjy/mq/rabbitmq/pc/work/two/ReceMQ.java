@@ -18,7 +18,7 @@ public class ReceMQ {
 		Channel channel = connection.createChannel();
 
 		/*
-		 * 声明队列
+		 * 声明队列：生产者/消费者
 		 * 
 		 * @queue 队列名称
 		 * 

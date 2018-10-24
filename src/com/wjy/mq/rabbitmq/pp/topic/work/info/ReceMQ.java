@@ -1,4 +1,4 @@
-package com.wjy.mq.rabbitmq.ps.work.two;
+package com.wjy.mq.rabbitmq.pp.topic.work.info;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -12,7 +12,7 @@ public class ReceMQ {
 
 	public static void main(String[] args) throws IOException, TimeoutException {
 
-		System.out.println("工作2开始");
+		System.out.println("工作INFO开始");
 
 		Connection connection = ConnectionFactoryUtil.getConnection();
 		Channel channel = connection.createChannel();
@@ -22,7 +22,7 @@ public class ReceMQ {
 		 * 
 		 * @exchange 交换机名称
 		 * 
-		 * @type 交换机类型：fanout（分发：将消息推送给所有已订阅的订阅者）
+		 * @type 交换机类型：topic（分发：将消息推送给所有路由键模糊匹配的已订阅的订阅者）
 		 * 
 		 * @durable 是否持久化，即服务器重启时生存
 		 * 
@@ -30,7 +30,7 @@ public class ReceMQ {
 		 * 
 		 * @arguments 其他属性
 		 */
-		channel.exchangeDeclare(MQInfo.getFanoutExchangeName(), "fanout", false, false, null);
+		channel.exchangeDeclare(MQInfo.getTopicExchangeName(), "topic", false, false, null);
 
 		// 获取随机的队列名称
 		String queue = channel.queueDeclare().getQueue();
@@ -40,11 +40,11 @@ public class ReceMQ {
 		 * 
 		 * @exchange 交换机名称
 		 * 
-		 * @routingKey 路由键
+		 * @routingKey 路由键（“#”匹配零到多个单词）
 		 * 
 		 * @arguments 其他属性
 		 */
-		channel.queueBind(queue, MQInfo.getFanoutExchangeName(), "", null);
+		channel.queueBind(queue, MQInfo.getTopicExchangeName(), "#.info", null);
 
 		ReceConsumer consumer = new ReceConsumer(channel);
 

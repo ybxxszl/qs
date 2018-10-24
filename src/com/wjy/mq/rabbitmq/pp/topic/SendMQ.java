@@ -1,4 +1,4 @@
-package com.wjy.mq.rabbitmq.pp.direct;
+package com.wjy.mq.rabbitmq.pp.topic;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -23,7 +23,7 @@ public class SendMQ {
 		 * 
 		 * @exchange 交换机名称
 		 * 
-		 * @type 交换机类型：direct（分发：将消息推送给所有路由键完全匹配的已订阅的订阅者）
+		 * @type 交换机类型：topic（分发：将消息推送给所有路由键模糊匹配的已订阅的订阅者）
 		 * 
 		 * @durable 是否持久化，即服务器重启时生存
 		 * 
@@ -31,7 +31,7 @@ public class SendMQ {
 		 * 
 		 * @arguments 其他属性
 		 */
-		channel.exchangeDeclare(MQInfo.getDirectExchangeName(), "direct", false, false, null);
+		channel.exchangeDeclare(MQInfo.getTopicExchangeName(), "topic", false, false, null);
 
 		String routingKey;
 
@@ -62,7 +62,7 @@ public class SendMQ {
 			 * 
 			 * @body 消息
 			 */
-			channel.basicPublish(MQInfo.getDirectExchangeName(), routingKey, null, (routingKey + i).getBytes());
+			channel.basicPublish(MQInfo.getTopicExchangeName(), routingKey, null, (routingKey + i).getBytes());
 
 			System.out.println("第" + i + "条消息发送完成");
 
