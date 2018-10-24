@@ -5,8 +5,8 @@ import java.util.concurrent.TimeoutException;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
+import com.wjy.mq.rabbitmq.MQInfo;
 import com.wjy.rabbit.ConnectionFactoryUtil;
-import com.wjy.test.mq.rabbitmq.MQInfo;
 
 public class ReceMQ {
 
@@ -30,7 +30,7 @@ public class ReceMQ {
 		 * 
 		 * @arguments 其他属性
 		 */
-		channel.exchangeDeclare(MQInfo.getExchangeName(), "fanout", false, false, null);
+		channel.exchangeDeclare(MQInfo.getFanoutExchangeName(), "fanout", false, false, null);
 
 		// 获取随机的队列名称
 		String queue = channel.queueDeclare().getQueue();
@@ -44,7 +44,7 @@ public class ReceMQ {
 		 * 
 		 * @arguments 其他属性
 		 */
-		channel.queueBind(queue, MQInfo.getExchangeName(), "", null);
+		channel.queueBind(queue, MQInfo.getFanoutExchangeName(), "", null);
 
 		ReceConsumer consumer = new ReceConsumer(channel);
 

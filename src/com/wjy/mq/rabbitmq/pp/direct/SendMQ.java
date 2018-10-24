@@ -1,4 +1,4 @@
-package com.wjy.mq.rabbitmq.ps;
+package com.wjy.mq.rabbitmq.pp.direct;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -31,9 +31,25 @@ public class SendMQ {
 		 * 
 		 * @arguments 其他属性
 		 */
-		channel.exchangeDeclare(MQInfo.getFanoutExchangeName(), "fanout", false, false, null);
+		channel.exchangeDeclare(MQInfo.getDirectExchangeName(), "direct", false, false, null);
 
-		for (int i = 1; i < 10; i++) {
+		String routingKey;
+
+		int n;
+
+		for (int i = 1; i <= 20; i++) {
+
+			n = (int) (Math.random() * 5 + 1);
+
+			if (n == 1) {
+
+				routingKey = MQInfo.getRoutingkey()[1];
+
+			} else {
+
+				routingKey = MQInfo.getRoutingkey()[0];
+
+			}
 
 			/*
 			 * 发送消息
@@ -46,7 +62,7 @@ public class SendMQ {
 			 * 
 			 * @body 消息
 			 */
-			channel.basicPublish(MQInfo.getFanoutExchangeName(), "", null, ("Hello" + i).getBytes());
+			channel.basicPublish(MQInfo.getDirectExchangeName(), routingKey, null, (routingKey + i).getBytes());
 
 			System.out.println("第" + i + "条消息发送完成");
 

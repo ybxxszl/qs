@@ -1,4 +1,4 @@
-package com.wjy.mq.rabbitmq.ps.work.one;
+package com.wjy.mq.rabbitmq.pp.direct.work.info;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -12,7 +12,7 @@ public class ReceMQ {
 
 	public static void main(String[] args) throws IOException, TimeoutException {
 
-		System.out.println("工作1开始");
+		System.out.println("工作INFO开始");
 
 		Connection connection = ConnectionFactoryUtil.getConnection();
 		Channel channel = connection.createChannel();
@@ -30,7 +30,7 @@ public class ReceMQ {
 		 * 
 		 * @arguments 其他属性
 		 */
-		channel.exchangeDeclare(MQInfo.getFanoutExchangeName(), "fanout", false, false, null);
+		channel.exchangeDeclare(MQInfo.getDirectExchangeName(), "direct", false, false, null);
 
 		// 获取随机的队列名称
 		String queue = channel.queueDeclare().getQueue();
@@ -44,7 +44,7 @@ public class ReceMQ {
 		 * 
 		 * @arguments 其他属性
 		 */
-		channel.queueBind(queue, MQInfo.getFanoutExchangeName(), "", null);
+		channel.queueBind(queue, MQInfo.getDirectExchangeName(), MQInfo.getRoutingkey()[0], null);
 
 		ReceConsumer consumer = new ReceConsumer(channel);
 
