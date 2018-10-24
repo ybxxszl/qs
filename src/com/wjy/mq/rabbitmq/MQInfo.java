@@ -24,7 +24,7 @@ public class MQInfo {
 		return TOPIC_EXCHANGE_NAME;
 	}
 
-	private static final String[] ROUTINGKEY = { "info", "error" };
+	private static final String[] ROUTINGKEY = { "log.grade.info", "log.grade.error" };
 
 	public static String[] getRoutingkey() {
 		return ROUTINGKEY;
