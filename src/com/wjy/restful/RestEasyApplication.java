@@ -35,6 +35,13 @@ public class RestEasyApplication extends Application {
 		singletons.add(new AuthorAPI());
 		singletons.add(new DesignTempletAPI());
 
+		// 微信
+		singletons.add(new com.wjy.api.wechat.AuthorAPI());
+		singletons.add(new com.wjy.api.wechat.DesignTempletAPI());
+		// 网站
+		singletons.add(new com.wjy.api.website.AuthorAPI());
+		singletons.add(new com.wjy.api.website.DesignTempletAPI());
+
 	}
 
 	@Override

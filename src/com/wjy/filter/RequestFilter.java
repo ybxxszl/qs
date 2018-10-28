@@ -27,7 +27,7 @@ public class RequestFilter implements ContainerRequestFilter {
 	// 忽略验证
 	static {
 
-		ignore.add("/testIgnore");
+		ignore.add("/wechat/author/getAuthor");
 
 	}
 

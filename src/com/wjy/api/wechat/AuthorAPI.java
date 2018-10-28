@@ -8,11 +8,16 @@ import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
 
+import com.wjy.dao.wechat.AuthorDao;
+import com.wjy.response.ResponseBuilder;
+
 @Path(value = "/wechat/author")
 @Produces(value = "application/json;charset=utf-8")
 public class AuthorAPI {
 
 	private static final Logger LOGGER = Logger.getLogger(AuthorAPI.class);
+
+	private AuthorDao authorDao = new AuthorDao();
 
 	@GET
 	@Path(value = "/getAuthor")
@@ -20,7 +25,7 @@ public class AuthorAPI {
 
 		LOGGER.info("code: " + code);
 
-		return null;
+		return ResponseBuilder.success(authorDao.getAuthor(code));
 
 	}
 

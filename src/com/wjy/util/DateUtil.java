@@ -13,6 +13,21 @@ import org.joda.time.PeriodType;
 public class DateUtil {
 
 	/**
+	 * @date 2018年10月28日
+	 * @author ybxxszl
+	 * @description TODO
+	 * @throws TODO
+	 * @param date
+	 * @return String
+	 * @throws Exception
+	 */
+	public static String getFormatDate(Date date) throws Exception {
+
+		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+
+	}
+
+	/**
 	 * 获取本天某时
 	 * 
 	 * @param hour
