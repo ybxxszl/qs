@@ -8,8 +8,6 @@ import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
 
-import com.wjy.log.LOG;
-
 @Path(value = "/wechat/author")
 @Produces(value = "application/json;charset=utf-8")
 public class AuthorAPI {
@@ -21,8 +19,6 @@ public class AuthorAPI {
 	public Response getAuthor(@QueryParam(value = "code") String code) throws Exception {
 
 		LOGGER.info("code: " + code);
-
-		LOG.pInfo("code: " + code);
 
 		return null;
 

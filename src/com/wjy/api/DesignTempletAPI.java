@@ -9,7 +9,6 @@ import javax.ws.rs.core.Response;
 import org.apache.log4j.Logger;
 
 import com.wjy.dao.DesignTempletDao;
-import com.wjy.log.LOG;
 import com.wjy.response.ResponseBuilder;
 
 @Path(value = "/designTemplet")
@@ -25,8 +24,6 @@ public class DesignTempletAPI {
 	public Response getDesignTemplet(@QueryParam(value = "designTempletId") String designTempletId) throws Exception {
 
 		LOGGER.info("designTempletId: " + designTempletId);
-
-		LOG.pInfo("designTempletId: " + designTempletId);
 
 		return ResponseBuilder.success(designTempletDao.getDesignTemplet(designTempletId));
 

@@ -11,7 +11,6 @@ import javax.ws.rs.core.Response;
 import org.apache.log4j.Logger;
 
 import com.wjy.dao.AuthorDao;
-import com.wjy.log.LOG;
 import com.wjy.response.ResponseBuilder;
 import com.wjy.vo.Author;
 
@@ -30,8 +29,6 @@ public class AuthorAPI {
 
 		LOGGER.info("authorAccoun: " + authorAccount + " authorPassword: " + authorPassword);
 
-		LOG.pInfo("authorAccoun: " + authorAccount + " authorPassword: " + authorPassword);
-
 		Author author = new Author(authorAccount, authorPassword);
 
 		return ResponseBuilder.success(authorDao.login(author));
@@ -44,8 +41,6 @@ public class AuthorAPI {
 
 		LOGGER.info("authorAccount: " + authorAccount);
 
-		LOG.pInfo("authorAccount: " + authorAccount);
-
 		return ResponseBuilder.success(authorDao.verify(authorAccount));
 
 	}
@@ -55,8 +50,6 @@ public class AuthorAPI {
 	public Response verify(Author author) throws Exception {
 
 		LOGGER.info("author: " + author.toString());
-
-		LOG.pInfo("author: " + author.toString());
 
 		return ResponseBuilder.success(authorDao.register(author));
 

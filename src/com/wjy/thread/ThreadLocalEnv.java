@@ -2,8 +2,6 @@ package com.wjy.thread;
 
 import org.apache.log4j.Logger;
 
-import com.wjy.log.LOG;
-
 /**
  * 定义线程环境
  * 
@@ -32,8 +30,6 @@ public class ThreadLocalEnv {
 
 		LOGGER.info("getENV：" + threadLocalVar.toString());
 
-		LOG.pInfo("getENV：" + threadLocalVar.toString());
-
 		return threadLocalVar;
 
 	}
@@ -51,8 +47,6 @@ public class ThreadLocalEnv {
 	public static void setENV(ThreadLocalVar threadLocalVar) {
 
 		LOGGER.info("setENV：" + threadLocalVar.toString());
-
-		LOG.pInfo("setENV：" + threadLocalVar.toString());
 
 		ENV.set(threadLocalVar);
 

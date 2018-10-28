@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import com.wjy.exception.BusinessException;
 import com.wjy.jdbc.SQLUtil;
-import com.wjy.log.LOG;
 import com.wjy.thread.ThreadLocalEnv;
 import com.wjy.vo.DesignTemplet;
 
@@ -36,8 +35,6 @@ public class DesignTempletDao extends SQLUtil {
 		DesignTemplet dt = designTempletList.get(0);
 
 		LOGGER.info(dt.toString());
-
-		LOG.pInfo(dt.toString());
 
 		return dt;
 

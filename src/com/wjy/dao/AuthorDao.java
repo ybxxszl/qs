@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 
 import com.wjy.exception.BusinessException;
 import com.wjy.jdbc.SQLUtil;
-import com.wjy.log.LOG;
 import com.wjy.util.UUIDUtil;
 import com.wjy.vo.Author;
 
@@ -33,8 +32,6 @@ public class AuthorDao extends SQLUtil {
 		Author a = authorList.get(0);
 
 		LOGGER.info("Author:" + a.toString());
-
-		LOG.pInfo("Author:" + a.toString());
 
 		return a;
 
