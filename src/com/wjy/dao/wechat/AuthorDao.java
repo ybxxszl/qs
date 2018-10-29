@@ -42,7 +42,7 @@ public class AuthorDao extends SQLUtil {
 
 		if (os.containsKey("session_key")) {
 
-			jsonObject1.put("session_key", os.getString("session_key"));
+			jsonObject1.put("sessionKey", os.getString("session_key"));
 
 			String sql = "SELECT author.author_id, author.author_account, author.author_password, author.author_name, author.author_sex, "
 					+ "author.author_birthday, author.author_phone, author.author_email, author.author_photo, author.author_state, author.open_id "

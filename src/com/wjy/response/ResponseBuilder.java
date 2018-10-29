@@ -1,8 +1,5 @@
 package com.wjy.response;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.ws.rs.core.Response;
 
 import com.wjy.util.JSONUtil;
@@ -59,9 +56,7 @@ public class ResponseBuilder {
 	 */
 	public static Response response(Object object, int code) {
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("data", object);
-		String str = JSONUtil.objectToJson(map);
+		String str = JSONUtil.objectToJson(object);
 		return Response.status(code).entity(str).build();
 
 	}
