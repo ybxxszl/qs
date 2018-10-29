@@ -5,7 +5,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSONObject;
-import com.wjy.exception.BusinessException;
+import com.wjy.exception.business.BusinessException;
+import com.wjy.exception.system.SystemException;
 import com.wjy.jdbc.SQLUtil;
 import com.wjy.thread.ThreadLocalEnv;
 import com.wjy.thread.ThreadLocalVar;
@@ -60,7 +61,7 @@ public class AuthorDao extends SQLUtil {
 
 				if (authorState == 0) {
 
-					throw new BusinessException("未激活");
+					throw new BusinessException("您为未激活状态！！！");
 
 				}
 
@@ -94,7 +95,7 @@ public class AuthorDao extends SQLUtil {
 
 				} else {
 
-					throw new Exception(os.getString("获取token失败！！！"));
+					throw new SystemException("获取token失败！！！");
 
 				}
 
@@ -104,7 +105,7 @@ public class AuthorDao extends SQLUtil {
 
 		} else {
 
-			throw new Exception(os.getString("errMsg"));
+			throw new SystemException(os.getString("errMsg"));
 
 		}
 

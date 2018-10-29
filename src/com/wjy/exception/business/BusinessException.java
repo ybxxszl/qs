@@ -1,4 +1,4 @@
-package com.wjy.exception;
+package com.wjy.exception.business;
 
 /**
  * @author ybxxszl

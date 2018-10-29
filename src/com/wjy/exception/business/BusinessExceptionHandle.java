@@ -1,11 +1,11 @@
-package com.wjy.exception;
+package com.wjy.exception.business;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.apache.log4j.Logger;
 
-import com.wjy.exception.BusinessException;
+import com.wjy.exception.business.BusinessException;
 import com.wjy.response.ResponseBuilder;
 
 /**

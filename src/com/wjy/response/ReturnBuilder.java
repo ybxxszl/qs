@@ -1,6 +1,7 @@
 package com.wjy.response;
 
-import com.wjy.exception.BusinessException;
+import com.wjy.exception.business.BusinessException;
+import com.wjy.exception.system.SystemException;
 
 public class ReturnBuilder {
 
@@ -111,26 +112,26 @@ public class ReturnBuilder {
 	/**
 	 * @date 2018年10月21日
 	 * @author ybxxszl
-	 * @description 失败业务异常
+	 * @description 失败系统异常
 	 * @param exception
 	 * @return Return
 	 */
-	public static ReturnBuilder errorBusinessException(BusinessException exception) {
+	public static ReturnBuilder errorSystemException(SystemException exception) {
 
-		return new ReturnBuilder(500, null, exception.getMessage());
+		return new ReturnBuilder(900, null, exception.getMessage());
 
 	}
 
 	/**
 	 * @date 2018年10月21日
 	 * @author ybxxszl
-	 * @description 失败系统异常
+	 * @description 失败业务异常
 	 * @param exception
 	 * @return Return
 	 */
-	public static ReturnBuilder errorSystemException(Exception exception) {
+	public static ReturnBuilder errorBusinessException(BusinessException exception) {
 
-		return new ReturnBuilder(600, null, exception.getMessage());
+		return new ReturnBuilder(700, null, exception.getMessage());
 
 	}
 

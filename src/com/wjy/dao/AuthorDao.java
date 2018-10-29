@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.wjy.exception.BusinessException;
+import com.wjy.exception.business.BusinessException;
 import com.wjy.jdbc.SQLUtil;
 import com.wjy.util.UUIDUtil;
 import com.wjy.vo.Author;

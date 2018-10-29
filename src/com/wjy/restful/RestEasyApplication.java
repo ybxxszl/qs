@@ -6,8 +6,8 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import com.wjy.api.AuthorAPI;
-import com.wjy.api.DesignTempletAPI;
+import com.wjy.exception.business.BusinessExceptionHandle;
+import com.wjy.exception.system.SystemExceptionHandle;
 import com.wjy.filter.RequestFilter;
 
 /**
@@ -25,15 +25,13 @@ public class RestEasyApplication extends Application {
 	 */
 	public RestEasyApplication() {
 
-		// 业务异常处理
-		singletons.add(new com.wjy.exception.BusinessExceptionHandle());
-
 		// 请求过滤
 		singletons.add(new RequestFilter());
 
-		// 普通
-		singletons.add(new AuthorAPI());
-		singletons.add(new DesignTempletAPI());
+		// 系统异常处理
+		singletons.add(new SystemExceptionHandle());
+		// 业务异常处理
+		singletons.add(new BusinessExceptionHandle());
 
 		// 微信
 		singletons.add(new com.wjy.api.wechat.AuthorAPI());
