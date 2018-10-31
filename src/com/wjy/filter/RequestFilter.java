@@ -28,6 +28,7 @@ public class RequestFilter implements ContainerRequestFilter {
 	static {
 
 		ignore.add("/wechat/author/getAuthor");
+		ignore.add("/wechat/author/sendVerifyCode");
 
 	}
 
