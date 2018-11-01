@@ -1,7 +1,6 @@
 package com.wjy.api.wechat;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -12,8 +11,7 @@ import org.apache.log4j.Logger;
 import com.alibaba.fastjson.JSONObject;
 import com.wjy.dao.wechat.AuthorDao;
 import com.wjy.response.ResponseBuilder;
-import com.wjy.util.HttpClientUtil;
-import com.wjy.util.PropertiesUtil;
+import com.wjy.send.mail.VerifyCode;
 
 @Path(value = "/wechat/author")
 @Produces(value = "application/json;charset=utf-8")
@@ -33,26 +31,25 @@ public class AuthorAPI {
 
 	}
 
-	@PUT
+	@GET
 	@Path(value = "/sendVerifyCode")
 	public Response sendVerifyCode(@QueryParam(value = "authorEmail") String authorEmail) throws Exception {
 
 		LOGGER.info("authorEmail: " + authorEmail);
 
-		JSONObject mqInfo = new JSONObject();
-		JSONObject mailInfo = new JSONObject();
+		VerifyCode verifyCode = new VerifyCode();
 
-		mailInfo.put("recipientAddress", "1062837400@qq.com");
-		mailInfo.put("text", "123456");
+		JSONObject object = verifyCode.send(authorEmail);
 
-		mqInfo.put("type", "pc");
-		mqInfo.put("name", "Mail_VerifyCode");
-		mqInfo.put("mailInfo", mailInfo);
-		mqInfo.put("smsInfo", null);
+		String msg;
 
-		HttpClientUtil.doPost(PropertiesUtil.getValue("mq.url"), mqInfo, null);
+		if (object.getInteger("code") == 200) {
+			msg = "验证码发送成功";
+		} else {
+			msg = "验证码发送失败";
+		}
 
-		return null;
+		return ResponseBuilder.success(msg);
 
 	}
 

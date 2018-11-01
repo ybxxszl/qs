@@ -155,7 +155,6 @@ public class HttpClientUtil {
 			sb.append(temp);
 		}
 		br.close();
-		System.out.println(sb.toString());
 		return JSONObject.parseObject(sb.toString());
 	}
 
