@@ -37,12 +37,12 @@ public class ResponseBuilder {
 	 * @date 2018年10月10日
 	 * @author ybxxszl
 	 * @description exception
-	 * @param e
+	 * @param object
 	 * @return Response
 	 */
-	public static Response exception(Exception e) {
+	public static Response exception(Object object) {
 
-		return error(e.getMessage());
+		return response(object, 300);
 
 	}
 
