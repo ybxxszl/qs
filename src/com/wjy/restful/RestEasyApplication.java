@@ -28,10 +28,10 @@ public class RestEasyApplication extends Application {
 		// 请求过滤
 		singletons.add(new RequestFilter());
 
-		// 系统异常处理
-		singletons.add(new SystemExceptionHandle());
 		// 业务异常处理
 		singletons.add(new BusinessExceptionHandle());
+		// 系统异常处理
+		singletons.add(new SystemExceptionHandle());
 
 		// 微信
 		singletons.add(new com.wjy.api.wechat.AuthorAPI());

@@ -1,4 +1,4 @@
-package com.wjy.param;
+package com.wjy.enu;
 
 /*
  * 系统参数
@@ -26,27 +26,6 @@ public enum SystemParam {
 	private String remark;
 
 	/*
-	 * 构造方法为私有
-	 */
-	private SystemParam() {
-
-	}
-
-	/*
-	 * 构造方法为私有
-	 */
-	private SystemParam(String id, String code, String name, String init, String type, String remark) {
-
-		this.id = id;
-		this.code = code;
-		this.name = name;
-		this.init = init;
-		this.type = type;
-		this.remark = remark;
-
-	}
-
-	/*
 	 * 根据编码获取参数
 	 */
 	public static SystemParam getSystemParam(String code) {
@@ -62,6 +41,21 @@ public enum SystemParam {
 		}
 
 		return null;
+
+	}
+
+	private SystemParam() {
+
+	}
+
+	private SystemParam(String id, String code, String name, String init, String type, String remark) {
+
+		this.id = id;
+		this.code = code;
+		this.name = name;
+		this.init = init;
+		this.type = type;
+		this.remark = remark;
 
 	}
 
