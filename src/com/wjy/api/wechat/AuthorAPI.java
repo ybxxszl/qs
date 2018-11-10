@@ -12,12 +12,12 @@ import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wjy.bean.RegisterWXAuthorBean;
+import com.wjy.bean.UserInfo;
 import com.wjy.dao.wechat.AuthorDao;
 import com.wjy.exception.business.BusinessException;
 import com.wjy.jedis.RedisUtil;
 import com.wjy.response.ResponseBuilder;
 import com.wjy.send.mail.VerifyCode;
-import com.wjy.vo.wx.UserInfo;
 
 import cn.binarywang.wx.miniapp.util.crypt.WxMaCryptUtils;
 

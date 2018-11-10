@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wjy.bean.UserInfo;
 import com.wjy.exception.business.BusinessException;
 import com.wjy.exception.system.SystemException;
 import com.wjy.jdbc.SQLUtil;
@@ -15,8 +16,7 @@ import com.wjy.util.PropertiesUtil;
 import com.wjy.util.UUIDUtil;
 import com.wjy.util.WeChatUtil;
 import com.wjy.vo.Author;
-import com.wjy.vo.wx.UserInfo;
-import com.wjy.vo.wx.WXAuthor;
+import com.wjy.vo.WXAuthor;
 
 public class AuthorDao extends SQLUtil {
 

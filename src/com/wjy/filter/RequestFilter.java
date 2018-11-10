@@ -28,8 +28,8 @@ public class RequestFilter implements ContainerRequestFilter {
 	static {
 
 		ignore.add("/wechat/author/loginAuthor");
-		ignore.add("/wechat/author/sendVerifyCode");
 		ignore.add("/wechat/author/registerAuthor");
+		ignore.add("/wechat/author/sendVerifyCode");
 
 	}
 

@@ -8,12 +8,21 @@ import com.wjy.util.PropertiesUtil;
 
 public class VerifyCode {
 
+	private static String mqUrl;
+	private static String mqVerifyCodeMills;
+
+	static {
+
+		mqUrl = PropertiesUtil.getValue("mq.url");
+		mqVerifyCodeMills = PropertiesUtil.getValue("mq.verifycode.mills");
+
+	}
+
 	public JSONObject send(String authorEmail) throws Exception {
 
 		String verifyCode = InfoUtil.getVerifyCode();
 
-		RedisUtil.set("verifycode:" + authorEmail, verifyCode,
-				Integer.parseInt(PropertiesUtil.getValue("verifycode.mills")));
+		RedisUtil.set("verifycode:" + authorEmail, verifyCode, Integer.parseInt(mqVerifyCodeMills));
 
 		JSONObject mqInfo = new JSONObject();
 		JSONObject mailInfo = new JSONObject();
@@ -26,7 +35,7 @@ public class VerifyCode {
 		mqInfo.put("mailInfo", mailInfo);
 		mqInfo.put("smsInfo", null);
 
-		JSONObject object = HttpClientUtil.doPost(PropertiesUtil.getValue("mq.url"), mqInfo, null);
+		JSONObject object = HttpClientUtil.doPost(mqUrl + "/postVerifyCode", mqInfo, null);
 
 		return object;
 
