@@ -1,9 +1,14 @@
 package com.wjy.dao.wechat;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.wjy.bean.custom.QueryBean;
 import com.wjy.exception.business.BusinessException;
 import com.wjy.jdbc.SQLUtil;
 import com.wjy.thread.ThreadLocalEnv;
@@ -53,12 +58,21 @@ public class DesignTempletDao extends SQLUtil {
 
 	}
 
-	public List<DesignTemplet> getDesignTempletList(Author author) throws Exception {
+	public JSONArray getDesignTempletList(Author author, QueryBean queryBean) throws Exception {
+
+		String searchContent = queryBean.getSearchContent();
+
+		String like = "";
+
+		if (!"".equals(searchContent)) {
+			like = "AND design_templet.design_templet_name LIKE '%" + searchContent + "%' ";
+		}
 
 		String sql = "SELECT design_templet.design_templet_id, design_templet.design_templet_name, "
 				+ "design_templet.finish_time, design_templet.start_recovery_time, design_templet.end_recovery_time, "
 				+ "design_templet.state, design_templet.link, design_templet.author_id "
-				+ "FROM design_templet WHERE design_templet.author_id = ?";
+				+ "FROM design_templet WHERE design_templet.author_id = ? " + like + "LIMIT "
+				+ queryBean.getCalculateItemBegin() + ", " + queryBean.getPageSize();
 
 		Object[] objects = new Object[] { author.getAuthor_id() };
 
@@ -70,7 +84,40 @@ public class DesignTempletDao extends SQLUtil {
 
 		LOGGER.info(designTempletList.toString());
 
-		return designTempletList;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		JSONArray array = new JSONArray();
+		JSONObject object = null;
+
+		for (DesignTemplet designTemplet : designTempletList) {
+
+			object = new JSONObject();
+
+			object.put("designTempletId", designTemplet.getDesign_templet_id());
+			object.put("designTempletName", designTemplet.getDesign_templet_name());
+			object.put("finishTime", sdf.format(designTemplet.getFinish_time()));
+
+			Date startRecoveryTime = designTemplet.getStart_recovery_time();
+			Date endRecoveryTime = designTemplet.getEnd_recovery_time();
+
+			if (startRecoveryTime == null) {
+				object.put("startRecoveryTime", "尚未开始回收");
+			} else {
+				object.put("startRecoveryTime", sdf.format(startRecoveryTime));
+			}
+			if (endRecoveryTime == null) {
+				object.put("endRecoveryTime", "尚未结束回收");
+			} else {
+				object.put("endRecoveryTime", sdf.format(endRecoveryTime));
+			}
+
+			object.put("state", designTemplet.getState());
+
+			array.add(object);
+
+		}
+
+		return array;
 
 	}
 
