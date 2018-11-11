@@ -60,6 +60,7 @@ public class AuthorDao extends SQLUtil {
 
 				String wxAuthorId = wxAuthor.getWx_author_id();
 
+				jsonObject2.put("wxAuthorId", wxAuthorId);
 				jsonObject2.put("wxAuthorEmail", wxAuthor.getWx_author_email());
 				jsonObject2.put("wxAuthorNickName", wxAuthor.getWx_author_nick_name());
 				jsonObject2.put("wxAuthorSex", wxAuthor.getWx_author_sex());

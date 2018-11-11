@@ -14,7 +14,6 @@ public class Author {
 	private String author_email;
 	private String author_photo;
 	private Integer author_state;
-	private String open_id;
 
 	public String getAuthor_id() {
 		return author_id;
@@ -96,14 +95,6 @@ public class Author {
 		this.author_state = author_state;
 	}
 
-	public String getOpen_id() {
-		return open_id;
-	}
-
-	public void setOpen_id(String open_id) {
-		this.open_id = open_id;
-	}
-
 	public Author() {
 		super();
 	}
@@ -121,7 +112,7 @@ public class Author {
 
 	public Author(String author_id, String author_account, String author_password, String author_name,
 			String author_sex, Date author_birthday, String author_phone, String author_email, String author_photo,
-			Integer author_state, String open_id) {
+			Integer author_state) {
 		super();
 		this.author_id = author_id;
 		this.author_account = author_account;
@@ -133,7 +124,6 @@ public class Author {
 		this.author_email = author_email;
 		this.author_photo = author_photo;
 		this.author_state = author_state;
-		this.open_id = open_id;
 	}
 
 	@Override
@@ -141,7 +131,7 @@ public class Author {
 		return "Author [author_id=" + author_id + ", author_account=" + author_account + ", author_password="
 				+ author_password + ", author_name=" + author_name + ", author_sex=" + author_sex + ", author_birthday="
 				+ author_birthday + ", author_phone=" + author_phone + ", author_email=" + author_email
-				+ ", author_photo=" + author_photo + ", author_state=" + author_state + ", open_id=" + open_id + "]";
+				+ ", author_photo=" + author_photo + ", author_state=" + author_state + "]";
 	}
 
 }

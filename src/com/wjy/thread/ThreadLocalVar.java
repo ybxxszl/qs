@@ -48,11 +48,8 @@ public class ThreadLocalVar {
 	 *             SQL异常
 	 */
 	public Connection getConn() throws ClassNotFoundException, SQLException {
-		// 初始化时创建数据库连接
-		if (conn == null) {
-			conn = JDBCUtil.getConnect();
-			setConn(conn);
-		}
+		// 创建数据库连接
+		conn = JDBCUtil.getConnect();
 		return conn;
 	}
 
