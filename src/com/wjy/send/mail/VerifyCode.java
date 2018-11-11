@@ -2,7 +2,7 @@ package com.wjy.send.mail;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wjy.jedis.RedisUtil;
-import com.wjy.send.info.InfoUtil;
+import com.wjy.util.RandomCodeUtil;
 import com.wjy.util.HttpClientUtil;
 import com.wjy.util.PropertiesUtil;
 
@@ -20,7 +20,7 @@ public class VerifyCode {
 
 	public JSONObject send(String authorEmail) throws Exception {
 
-		String verifyCode = InfoUtil.getVerifyCode();
+		String verifyCode = RandomCodeUtil.getVerifyCode();
 
 		RedisUtil.set("verifycode:" + authorEmail, verifyCode, Integer.parseInt(mqVerifyCodeMills));
 

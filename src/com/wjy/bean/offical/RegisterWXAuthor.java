@@ -1,6 +1,6 @@
-package com.wjy.bean;
+package com.wjy.bean.offical;
 
-public class RegisterWXAuthorBean {
+public class RegisterWXAuthor {
 
 	private String wxAuthorEmail;
 	private String verifyCode;
@@ -48,11 +48,11 @@ public class RegisterWXAuthorBean {
 		this.sessionKey = sessionKey;
 	}
 
-	public RegisterWXAuthorBean() {
+	public RegisterWXAuthor() {
 		super();
 	}
 
-	public RegisterWXAuthorBean(String wxAuthorEmail, String verifyCode, String encryptedData, String iv,
+	public RegisterWXAuthor(String wxAuthorEmail, String verifyCode, String encryptedData, String iv,
 			String sessionKey) {
 		super();
 		this.wxAuthorEmail = wxAuthorEmail;
@@ -64,8 +64,8 @@ public class RegisterWXAuthorBean {
 
 	@Override
 	public String toString() {
-		return "RegisterWXAuthorBean [wxAuthorEmail=" + wxAuthorEmail + ", verifyCode=" + verifyCode
-				+ ", encryptedData=" + encryptedData + ", iv=" + iv + ", sessionKey=" + sessionKey + "]";
+		return "RegisterWXAuthor [wxAuthorEmail=" + wxAuthorEmail + ", verifyCode=" + verifyCode + ", encryptedData="
+				+ encryptedData + ", iv=" + iv + ", sessionKey=" + sessionKey + "]";
 	}
 
 }

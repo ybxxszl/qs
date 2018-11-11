@@ -11,8 +11,8 @@ import javax.ws.rs.core.Response;
 import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSONObject;
-import com.wjy.bean.RegisterWXAuthorBean;
-import com.wjy.bean.UserInfo;
+import com.wjy.bean.offical.RegisterWXAuthor;
+import com.wjy.bean.offical.UserInfo;
 import com.wjy.dao.wechat.AuthorDao;
 import com.wjy.exception.business.BusinessException;
 import com.wjy.jedis.RedisUtil;
@@ -61,24 +61,24 @@ public class AuthorAPI {
 
 	@POST
 	@Path(value = "/registerAuthor")
-	public Response registerAuthor(RegisterWXAuthorBean registerWXAuthorBean) throws Exception {
+	public Response registerAuthor(RegisterWXAuthor registerWXAuthor) throws Exception {
 
-		LOGGER.info("RegisterWXAuthorBean: " + registerWXAuthorBean);
+		LOGGER.info("RegisterWXAuthorBean: " + registerWXAuthor);
 
-		String VerifyCode = RedisUtil.get("verifycode:" + registerWXAuthorBean.getWxAuthorEmail());
+		String VerifyCode = RedisUtil.get("verifycode:" + registerWXAuthor.getWxAuthorEmail());
 
-		if (!VerifyCode.equals(registerWXAuthorBean.getVerifyCode())) {
+		if (!VerifyCode.equals(registerWXAuthor.getVerifyCode())) {
 			throw new BusinessException("验证码错误，请重新输入");
 		}
 
-		String text = WxMaCryptUtils.decrypt(registerWXAuthorBean.getSessionKey(),
-				registerWXAuthorBean.getEncryptedData(), registerWXAuthorBean.getIv());
+		String text = WxMaCryptUtils.decrypt(registerWXAuthor.getSessionKey(), registerWXAuthor.getEncryptedData(),
+				registerWXAuthor.getIv());
 
 		UserInfo userInfo = JSONObject.parseObject(text, UserInfo.class);
 
 		LOGGER.info("UserInfo:" + userInfo);
 
-		return ResponseBuilder.success(authorDao.registerAuthor(registerWXAuthorBean.getWxAuthorEmail(), userInfo));
+		return ResponseBuilder.success(authorDao.registerAuthor(registerWXAuthor.getWxAuthorEmail(), userInfo));
 
 	}
 

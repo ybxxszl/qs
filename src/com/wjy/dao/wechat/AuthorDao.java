@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSONObject;
-import com.wjy.bean.UserInfo;
+import com.wjy.bean.offical.UserInfo;
 import com.wjy.exception.business.BusinessException;
 import com.wjy.exception.system.SystemException;
 import com.wjy.jdbc.SQLUtil;
@@ -13,7 +13,7 @@ import com.wjy.thread.ThreadLocalEnv;
 import com.wjy.thread.ThreadLocalVar;
 import com.wjy.util.HttpRequestUtil;
 import com.wjy.util.PropertiesUtil;
-import com.wjy.util.UUIDUtil;
+import com.wjy.util.RandomCodeUtil;
 import com.wjy.util.WeChatUtil;
 import com.wjy.vo.Author;
 import com.wjy.vo.WXAuthor;
@@ -134,7 +134,7 @@ public class AuthorDao extends SQLUtil {
 				+ "wx_author.wx_author_sex, wx_author.wx_author_country, wx_author.wx_author_province, wx_author.wx_author_city, "
 				+ "wx_author.wx_author_avatar_url, wx_author.wx_author_open_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-		int num = Update(sql, UUIDUtil.getUUID(), authorEmail, userInfo.getNickName(), sex, userInfo.getCountry(),
+		int num = Update(sql, RandomCodeUtil.getUUID(), authorEmail, userInfo.getNickName(), sex, userInfo.getCountry(),
 				userInfo.getCity(), userInfo.getProvince(), userInfo.getAvatarUrl(), userInfo.getOpenId());
 
 		if (num == 0) {

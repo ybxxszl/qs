@@ -1,4 +1,4 @@
-package com.wjy.bean;
+package com.wjy.bean.offical;
 
 public class UserInfo {
 

@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 
 import com.wjy.exception.business.BusinessException;
 import com.wjy.jdbc.SQLUtil;
-import com.wjy.util.UUIDUtil;
+import com.wjy.util.RandomCodeUtil;
 import com.wjy.vo.Author;
 
 public class AuthorDao extends SQLUtil {
@@ -65,7 +65,7 @@ public class AuthorDao extends SQLUtil {
 				+ "author.author_birthday, author.author_phone, author.author_email, author.author_photo, author.author_state) "
 				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-		int num = Update(sql, UUIDUtil.getUUID(), author.getAuthor_account(), author.getAuthor_password(),
+		int num = Update(sql, RandomCodeUtil.getUUID(), author.getAuthor_account(), author.getAuthor_password(),
 				author.getAuthor_name(), author.getAuthor_sex(), author.getAuthor_birthday(), author.getAuthor_phone(),
 				author.getAuthor_email(), "logo.jpg", 1);
 

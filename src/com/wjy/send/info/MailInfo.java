@@ -1,4 +1,4 @@
-package com.wjy.bean.mail;
+package com.wjy.send.info;
 
 /**
  * @Date 2018/10/27
