@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : aliyun
+Source Server         : Manjaro
 Source Server Version : 50709
-Source Host           : 127.0.0.1:3306
+Source Host           : 192.168.1.10:3306
 Source Database       : qs
 
 Target Server Type    : MYSQL
 Target Server Version : 50709
 File Encoding         : 65001
 
-Date: 2018-11-07 20:27:03
+Date: 2018-11-11 22:41:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,14 +30,13 @@ CREATE TABLE `author` (
   `author_email` varchar(255) DEFAULT NULL,
   `author_photo` varchar(255) DEFAULT NULL,
   `author_state` int(255) DEFAULT NULL,
-  `open_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`author_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of author
 -- ----------------------------
-INSERT INTO `author` VALUES ('c5337055-7ae7-4227-b4f7-d65e94b45575', 'test', '0000', '王军岩', '男', '1950-01-01', '18743102774', '1062837400@qq.com', 'logo.jpg', '1', 'oQLFG46moWC10Z-EqMxWGp6lWdGc - test');
+INSERT INTO `author` VALUES ('c5337055-7ae7-4227-b4f7-d65e94b45575', 'test', '0000', '王军岩', '男', '1950-01-01', '18743102774', '1062837400@qq.com', 'logo.jpg', '1');
 
 -- ----------------------------
 -- Table structure for checkbox_answer_count
@@ -184,7 +183,26 @@ CREATE TABLE `design_templet` (
 -- ----------------------------
 -- Records of design_templet
 -- ----------------------------
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa04', '薛中然公众号粉丝调查', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa01', '薛中然公众号粉丝调查1', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa02', '薛中然公众号粉丝调查2', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa03', '薛中然公众号粉丝调查3', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa04', '薛中然公众号粉丝调查4', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa05', '薛中然公众号粉丝调查5', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa06', '薛中然公众号粉丝调查6', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa07', '薛中然公众号粉丝调查7', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa08', '薛中然公众号粉丝调查8', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa09', '薛中然公众号粉丝调查9', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa10', '薛中然公众号粉丝调查10', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa11', '薛中然公众号粉丝调查11', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa12', '薛中然公众号粉丝调查12', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa13', '薛中然公众号粉丝调查13', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa14', '薛中然公众号粉丝调查14', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa15', '薛中然公众号粉丝调查15', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa16', '薛中然公众号粉丝调查16', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa17', '薛中然公众号粉丝调查17', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa18', '薛中然公众号粉丝调查18', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa19', '薛中然公众号粉丝调查19', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa20', '薛中然公众号粉丝调查20', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
 
 -- ----------------------------
 -- Table structure for design_templet_index
@@ -292,4 +310,4 @@ CREATE TABLE `wx_author` (
 -- ----------------------------
 -- Records of wx_author
 -- ----------------------------
-INSERT INTO `wx_author` VALUES ('349f2b9b-5633-4ff0-8e2b-5183a2bc991b', '1062837400@qq.com', '一不小心睡着了', '男', '中国', '河北', '北京', 'https://wx.qlogo.cn/mmopen/vi_32/iaccJSlTtyOwa8WsISp0dp0oEknmlicicnn0Nck2zV0quXJQ8iciaQ0kCOQC7ARRsyqLzYiaqE3oYNUKIPibvDkaicFJHg/132', 'oQLFG46moWC10Z-EqMxWGp6lWdGc');
+INSERT INTO `wx_author` VALUES ('2c198e6a-377f-47a5-868a-421628cacfe1', '1062837400@qq.com', '一不小心睡着了', '男', '中国', '吉林', '长春', 'https://wx.qlogo.cn/mmopen/vi_32/iaccJSlTtyOwa8WsISp0dp0oEknmlicicnn0Nck2zV0quXJQ8iciaQ0kCOQC7ARRsyqLzYiaqE3oYNUKIPibvDkaicFJHg/132', 'oQLFG46moWC10Z-EqMxWGp6lWdGc');

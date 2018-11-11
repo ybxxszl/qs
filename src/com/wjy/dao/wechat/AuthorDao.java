@@ -11,9 +11,8 @@ import com.wjy.exception.system.SystemException;
 import com.wjy.jdbc.SQLUtil;
 import com.wjy.thread.ThreadLocalEnv;
 import com.wjy.thread.ThreadLocalVar;
-import com.wjy.util.HttpRequestUtil;
-import com.wjy.util.PropertiesUtil;
 import com.wjy.util.RandomCodeUtil;
+import com.wjy.util.TokenUtil;
 import com.wjy.util.WeChatUtil;
 import com.wjy.vo.Author;
 import com.wjy.vo.WXAuthor;
@@ -21,16 +20,6 @@ import com.wjy.vo.WXAuthor;
 public class AuthorDao extends SQLUtil {
 
 	private static final Logger LOGGER = Logger.getLogger(AuthorDao.class);
-
-	private static String tokenUrl;
-	private static String tokenMills;
-
-	static {
-
-		tokenUrl = PropertiesUtil.getValue("token.url");
-		tokenMills = PropertiesUtil.getValue("token.mills");
-
-	}
 
 	public JSONObject loginAuthor(String code) throws Exception {
 
@@ -69,28 +58,18 @@ public class AuthorDao extends SQLUtil {
 				jsonObject2.put("wxAuthorCity", wxAuthor.getWx_author_city());
 				jsonObject2.put("wxAuthorAvatarUrl", wxAuthor.getWx_author_avatar_url());
 
-				String param = "wxAuthorId=" + wxAuthorId + "&mills=" + tokenMills;
+				String token = TokenUtil.getToken(wxAuthorId);
 
-				JSONObject object = HttpRequestUtil.sendGet(tokenUrl, param);
+				LOGGER.info("token：" + token);
 
-				if (object.getInteger("status") == 200) {
+				jsonObject1.put("token", token);
 
-					String token = object.getString("data");
+				ThreadLocalVar threadLocalVar = ThreadLocalEnv.getENV();
 
-					LOGGER.info("token：" + token);
+				threadLocalVar.setAuthor_id(wxAuthorId);
+				threadLocalVar.setToken(token);
 
-					jsonObject1.put("token", token);
-
-					ThreadLocalVar threadLocalVar = ThreadLocalEnv.getENV();
-
-					threadLocalVar.setAuthor_id(wxAuthorId);
-					threadLocalVar.setToken(token);
-
-					ThreadLocalEnv.setENV(threadLocalVar);
-
-				} else {
-					throw new SystemException("获取token失败！！！");
-				}
+				ThreadLocalEnv.setENV(threadLocalVar);
 
 			}
 

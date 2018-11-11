@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import com.wjy.response.ResponseBuilder;
 import com.wjy.thread.ThreadLocalEnv;
 import com.wjy.thread.ThreadLocalVar;
+import com.wjy.util.TokenUtil;
 
 /**
  * @date 2018年10月9日
@@ -67,7 +68,7 @@ public class RequestFilter implements ContainerRequestFilter {
 
 		if (verify) {
 
-			if (token == null) {
+			if (token == null || !TokenUtil.verifyToken(token)) {
 
 				requestContext.abortWith(ResponseBuilder.error("请重新登录"));
 
