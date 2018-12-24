@@ -11,8 +11,6 @@ import java.util.ArrayList;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.wjy.thread.ThreadLocalEnv;
-
 /**
  * @date 2018年10月9日
  * @author ybxxszl
@@ -28,7 +26,7 @@ public class SQLUtil {
 	public <T> ArrayList<T> Query(String sql, Object[] paramters, Class<T> clazz) throws ClassNotFoundException,
 			SQLException, InstantiationException, IllegalAccessException, InvocationTargetException {
 
-		Connection conn = ThreadLocalEnv.getENV().getConn();
+		Connection conn = JDBCUtil.getConnect();
 		ArrayList<T> list = new ArrayList<T>();
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ParameterMetaData pmd = pstmt.getParameterMetaData();
@@ -65,7 +63,7 @@ public class SQLUtil {
 	 */
 	public int Update(String sql, Object... paramters) throws ClassNotFoundException, SQLException {
 
-		Connection conn = ThreadLocalEnv.getENV().getConn();
+		Connection conn = JDBCUtil.getConnect();
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ParameterMetaData pmd = pstmt.getParameterMetaData();
 		int count = pmd.getParameterCount();

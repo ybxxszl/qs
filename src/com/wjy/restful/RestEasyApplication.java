@@ -40,6 +40,8 @@ public class RestEasyApplication extends Application {
 		singletons.add(new com.wjy.api.website.AuthorAPI());
 		singletons.add(new com.wjy.api.website.DesignTempletAPI());
 
+		singletons.add(new com.wjy.queue.TestQueue());
+
 	}
 
 	@Override
