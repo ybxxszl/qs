@@ -13,6 +13,10 @@ public class TestQueue {
 
 	private QueueTaskDao queueTaskDao = new QueueTaskDao();
 
+	private DesignTempletQueueTask1 designTempletQueueTask1 = new DesignTempletQueueTask1();
+	private DesignTempletQueueTask2 designTempletQueueTask2 = new DesignTempletQueueTask2();
+	private DesignTempletQueueTask3 designTempletQueueTask3 = new DesignTempletQueueTask3();
+
 	public void test() throws Exception {
 
 		DesignTemplet designTemplet1 = new DesignTemplet();
@@ -28,13 +32,11 @@ public class TestQueue {
 		designTemplet3.setDesign_templet_id(RandomCodeUtil.getUUID());
 		designTemplet3.setDesign_templet_name("3");
 
-		DesignTempletQueueTask designTempletQueueTask = new DesignTempletQueueTask();
-
-		QueueTask queueTask1 = designTempletQueueTask.packageQueueTask("DesignTempletQueueTask", "123",
+		QueueTask queueTask1 = designTempletQueueTask1.packageQueueTask("DesignTempletQueueTask1", "0",
 				JSONUtil.objectToJson(designTemplet1), 1, 1);
-		QueueTask queueTask2 = designTempletQueueTask.packageQueueTask("DesignTempletQueueTask", "123",
+		QueueTask queueTask2 = designTempletQueueTask2.packageQueueTask("DesignTempletQueueTask2", "0",
 				JSONUtil.objectToJson(designTemplet2), 2, 1);
-		QueueTask queueTask3 = designTempletQueueTask.packageQueueTask("DesignTempletQueueTask", "123",
+		QueueTask queueTask3 = designTempletQueueTask3.packageQueueTask("DesignTempletQueueTask3", "0",
 				JSONUtil.objectToJson(designTemplet3), 3, 1);
 
 		queueTaskDao.insertQueueTask(queueTask1);

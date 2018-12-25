@@ -7,25 +7,25 @@ import org.apache.log4j.Logger;
  * @Author ybxxszl
  * @Desc
  **/
-public class DesignTempletQueueTask extends AbstractQueueTask {
+public class DesignTempletQueueTask3 extends AbstractQueueTask {
 
-	private static final Logger LOGGER = Logger.getLogger(DesignTempletQueueTask.class);
+	private static final Logger LOGGER = Logger.getLogger(DesignTempletQueueTask3.class);
 
 	static {
-		setThreadTask(new DesignTempletQueueTask());
+		setThreadTask(new DesignTempletQueueTask3());
 	}
 
 	@Override
 	public String getQueueName() {
-		return "DesignTempletQueueTask";
+		return "DesignTempletQueueTask3";
 	}
 
 	@Override
 	public boolean executeTask(String data) {
 		try {
-			LOGGER.info("DesignTempletQueueTask - START");
+			LOGGER.info("DesignTempletQueueTask3 - START");
 			LOGGER.info(data);
-			LOGGER.info("DesignTempletQueueTask - END");
+			LOGGER.info("DesignTempletQueueTask3 - END");
 		} catch (Exception e) {
 			LOGGER.error(e);
 			e.printStackTrace();
