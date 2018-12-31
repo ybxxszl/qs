@@ -1,10 +1,13 @@
 package com.wjy.jedis;
 
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import com.wjy.mq.redismq.ps.JedisPubSubListener;
 
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.Tuple;
 
 /**
  * @date 2018年10月10日
@@ -190,6 +193,69 @@ public class RedisUtil {
 		jedis.subscribe(listener, channels);
 
 		jedis.close();
+
+	}
+
+	public static int zadd(String key, double score, String member) {
+
+		Jedis jedis = JedisUtil.getJedis();
+
+		Long num = jedis.zadd(key, score, member);
+
+		jedis.close();
+
+		return num.intValue();
+
+	}
+
+	public static int zrem(String key, String... members) {
+
+		Jedis jedis = JedisUtil.getJedis();
+
+		Long num = jedis.zrem(key, members);
+
+		jedis.close();
+
+		return num.intValue();
+
+	}
+
+	public static Set<Tuple> zrangeWithScores(String key, long start, long end) {
+
+		Jedis jedis = JedisUtil.getJedis();
+
+		Set<Tuple> set = jedis.zrangeWithScores(key, start, end);
+
+		jedis.close();
+
+		return set;
+
+	}
+
+	public static double zrangeWithScores(String key) throws Exception {
+
+		double score = 0;
+
+		Jedis jedis = JedisUtil.getJedis();
+
+		Set<Tuple> set = jedis.zrangeWithScores(key, 0, 0);
+
+		if (set.isEmpty()) {
+
+			TimeUnit.SECONDS.sleep(10);
+
+		} else {
+
+			Tuple[] tuples = (Tuple[]) set.toArray();
+			Tuple tuple = tuples[0];
+
+			score = tuple.getScore();
+
+		}
+
+		jedis.close();
+
+		return score;
 
 	}
 

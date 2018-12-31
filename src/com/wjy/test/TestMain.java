@@ -1,6 +1,6 @@
 package com.wjy.test;
 
-import com.wjy.queue.TestQueue;
+import com.wjy.delay.TestDelay;
 
 public class TestMain {
 
@@ -8,7 +8,9 @@ public class TestMain {
 
 		try {
 
-			new TestQueue().test();
+			// new TestQueue().test();
+
+			new TestDelay().test();
 
 		} catch (Exception e) {
 
