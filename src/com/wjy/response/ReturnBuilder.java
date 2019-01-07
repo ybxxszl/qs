@@ -135,4 +135,17 @@ public class ReturnBuilder {
 
 	}
 
+	/**
+	 * @date 2019年1月7日
+	 * @author ybxxszl
+	 * @description 失败异常
+	 * @param exception
+	 * @return Return
+	 */
+	public static ReturnBuilder errorException(Exception e) {
+
+		return new ReturnBuilder(500, null, e.getMessage());
+
+	}
+
 }

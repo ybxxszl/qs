@@ -3,7 +3,6 @@ package com.wjy.restful;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import com.wjy.exception.business.BusinessExceptionHandle;
@@ -15,7 +14,7 @@ import com.wjy.filter.RequestFilter;
  * @author ybxxszl
  * @description 自动扫描模式
  */
-@ApplicationPath(value = "/api")
+// @ApplicationPath(value = "/api")
 public class RestEasyApplication extends Application {
 
 	private Set<Object> singletons = new HashSet<Object>();
