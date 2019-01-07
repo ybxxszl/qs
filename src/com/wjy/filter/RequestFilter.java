@@ -31,7 +31,7 @@ public class RequestFilter implements ContainerRequestFilter {
 		ignore.add("/wechat/author/loginAuthor");
 		ignore.add("/wechat/author/registerAuthor");
 		ignore.add("/wechat/author/sendVerifyCode");
-		ignore.add("/queue");
+		ignore.add("/swagger");
 
 	}
 
@@ -39,6 +39,16 @@ public class RequestFilter implements ContainerRequestFilter {
 	public static void add(String p) {
 
 		ignore.add(p);
+
+	}
+
+	public void lookIgnoreVerifyInfo(String path) {
+
+		if (path.startsWith("/swagger")) {
+
+			LOGGER.info("使用Swagger生成API文档");
+
+		}
 
 	}
 
@@ -60,6 +70,8 @@ public class RequestFilter implements ContainerRequestFilter {
 		for (String str : ignore) {
 
 			if (path.contains(str)) {
+
+				lookIgnoreVerifyInfo(path);
 
 				verify = false;
 

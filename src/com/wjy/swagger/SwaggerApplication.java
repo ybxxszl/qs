@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
+import org.apache.log4j.Logger;
+
 import com.wjy.exception.business.BusinessExceptionHandle;
 import com.wjy.exception.system.SystemExceptionHandle;
 import com.wjy.filter.RequestFilter;
@@ -15,6 +17,8 @@ import io.swagger.jaxrs.config.BeanConfig;
 
 @ApplicationPath(value = "/api")
 public class SwaggerApplication extends Application {
+
+	private static final Logger LOGGER = Logger.getLogger(SwaggerApplication.class);
 
 	private Set<Object> singletons = new HashSet<Object>();
 
@@ -38,7 +42,7 @@ public class SwaggerApplication extends Application {
 		singletons.add(new com.wjy.api.website.AuthorAPI());
 		singletons.add(new com.wjy.api.website.DesignTempletAPI());
 
-		// singletons.add(new com.wjy.queue.TestQueue());
+		LOGGER.info("RestEasy配置加载完成 ！！！");
 
 		/*
 		 * Swagger配置
@@ -55,6 +59,8 @@ public class SwaggerApplication extends Application {
 			beanConfig.setResourcePackage(PropertiesUtil.getValueOrDefault("swagger.resourcePackage", "com"));
 			beanConfig.setBasePath(PropertiesUtil.getValueOrDefault("swagger.basePath", "/api"));
 			beanConfig.setSchemes(new String[] { "http" });
+
+			LOGGER.info("Swagger配置加载完成 ！！！");
 
 		}
 
