@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
 
 import org.apache.log4j.Logger;
@@ -17,7 +16,6 @@ import com.wjy.util.PropertiesUtil;
 import io.swagger.jaxrs.config.BeanConfig;
 
 @ApplicationPath(value = "/api")
-@Produces(value = "application/json;charset=utf-8")
 public class SwaggerApplication extends Application {
 
 	private static final Logger LOGGER = Logger.getLogger(SwaggerApplication.class);

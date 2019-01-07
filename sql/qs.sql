@@ -1,42 +1,19 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : Manjaro
-Source Server Version : 50709
-Source Host           : 192.168.1.10:3306
+Source Server         : MySQL
+Source Server Version : 50560
+Source Host           : 127.0.0.1:3306
 Source Database       : qs
 
 Target Server Type    : MYSQL
-Target Server Version : 50709
+Target Server Version : 50560
 File Encoding         : 65001
 
-Date: 2018-11-11 22:41:50
+Date: 2019-01-07 21:22:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for author
--- ----------------------------
-DROP TABLE IF EXISTS `author`;
-CREATE TABLE `author` (
-  `author_id` varchar(255) NOT NULL,
-  `author_account` varchar(255) DEFAULT NULL,
-  `author_password` varchar(255) DEFAULT NULL,
-  `author_name` varchar(255) DEFAULT NULL,
-  `author_sex` varchar(255) DEFAULT NULL,
-  `author_birthday` date DEFAULT NULL,
-  `author_phone` varchar(255) DEFAULT NULL,
-  `author_email` varchar(255) DEFAULT NULL,
-  `author_photo` varchar(255) DEFAULT NULL,
-  `author_state` int(255) DEFAULT NULL,
-  PRIMARY KEY (`author_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of author
--- ----------------------------
-INSERT INTO `author` VALUES ('c5337055-7ae7-4227-b4f7-d65e94b45575', 'test', '0000', '王军岩', '男', '1950-01-01', '18743102774', '1062837400@qq.com', 'logo.jpg', '1');
 
 -- ----------------------------
 -- Table structure for checkbox_answer_count
@@ -54,6 +31,26 @@ CREATE TABLE `checkbox_answer_count` (
 -- ----------------------------
 -- Records of checkbox_answer_count
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for delay_task
+-- ----------------------------
+DROP TABLE IF EXISTS `delay_task`;
+CREATE TABLE `delay_task` (
+  `delay_id` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '延时ID',
+  `delay_name` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '延时名称',
+  `task_id` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '任务ID',
+  `task_data` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '任务数据',
+  `task_score` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '分数',
+  `task_state` int(11) NOT NULL COMMENT '任务状态: 1 等待中 2 执行中 3 已完成 4 已取消',
+  PRIMARY KEY (`delay_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of delay_task
+-- ----------------------------
+INSERT INTO `delay_task` VALUES ('7604db4c-d00c-48f6-9851-975163f090d1', 'DesignTempletDelayTask2', '2', '{\"design_templet_id\":\"156fb506-746d-463f-bec5-6faca7ce6f79\",\"design_templet_name\":\"2\",\"finish_time\":null,\"start_recovery_time\":null,\"end_recovery_time\":null,\"state\":null,\"link\":null,\"author_id\":null}', '1546261360044', '3');
+INSERT INTO `delay_task` VALUES ('8f29fc35-df80-41bd-a180-c9019f2c94aa', 'DesignTempletDelayTask1', '1', '{\"design_templet_id\":\"bb329449-dbb8-4d36-a455-c04d261d27a0\",\"design_templet_name\":\"1\",\"finish_time\":null,\"start_recovery_time\":null,\"end_recovery_time\":null,\"state\":null,\"link\":null,\"author_id\":null}', '1546261330042', '3');
 
 -- ----------------------------
 -- Table structure for design_checkbox
@@ -174,35 +171,16 @@ CREATE TABLE `design_templet` (
   `end_recovery_time` datetime DEFAULT NULL,
   `state` int(255) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
-  `author_id` varchar(255) DEFAULT NULL,
+  `user_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`design_templet_id`),
-  KEY `foreign key_user_id` (`author_id`),
-  CONSTRAINT `foreign key_user_id` FOREIGN KEY (`author_id`) REFERENCES `author` (`author_id`)
+  KEY `foreign key_user_id` (`user_id`),
+  CONSTRAINT `foreign key_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of design_templet
 -- ----------------------------
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa01', '薛中然公众号粉丝调查1', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa02', '薛中然公众号粉丝调查2', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa03', '薛中然公众号粉丝调查3', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa04', '薛中然公众号粉丝调查4', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa05', '薛中然公众号粉丝调查5', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa06', '薛中然公众号粉丝调查6', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa07', '薛中然公众号粉丝调查7', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa08', '薛中然公众号粉丝调查8', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa09', '薛中然公众号粉丝调查9', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa10', '薛中然公众号粉丝调查10', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa11', '薛中然公众号粉丝调查11', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa12', '薛中然公众号粉丝调查12', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa13', '薛中然公众号粉丝调查13', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa14', '薛中然公众号粉丝调查14', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa15', '薛中然公众号粉丝调查15', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa16', '薛中然公众号粉丝调查16', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa17', '薛中然公众号粉丝调查17', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa18', '薛中然公众号粉丝调查18', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa19', '薛中然公众号粉丝调查19', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
-INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa20', '薛中然公众号粉丝调查20', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
+INSERT INTO `design_templet` VALUES ('3681c296-7a0a-45fa-9724-09716438aa04', '薛中然公众号粉丝调查', '2018-05-08 18:04:43', null, null, '1', null, 'c5337055-7ae7-4227-b4f7-d65e94b45575');
 
 -- ----------------------------
 -- Table structure for design_templet_index
@@ -257,6 +235,27 @@ INSERT INTO `design_text` VALUES ('973f7fab-ac50-4b74-bd59-b10cf5988b20', '您�
 INSERT INTO `design_text` VALUES ('e3d51bd4-b9e5-40bb-a0ec-da5484ebeef8', '您对我们的公众号有什么意见或建议？');
 
 -- ----------------------------
+-- Table structure for queue_task
+-- ----------------------------
+DROP TABLE IF EXISTS `queue_task`;
+CREATE TABLE `queue_task` (
+  `queue_id` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '队列ID',
+  `queue_name` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '队列名称',
+  `task_id` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '任务ID',
+  `task_data` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '任务数据',
+  `task_index` int(11) NOT NULL COMMENT '执行顺序索引',
+  `task_state` int(11) NOT NULL COMMENT '任务状态: 1 等待中 2 执行中 3 已完成 4 已取消',
+  PRIMARY KEY (`queue_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of queue_task
+-- ----------------------------
+INSERT INTO `queue_task` VALUES ('3c3aeee3-14b4-4405-881e-4209eabbb5f0', 'DesignTempletQueueTask3', '0', '{\"design_templet_id\":\"f5d24c42-ce09-4a83-88f4-b63f7978e120\",\"design_templet_name\":\"3\",\"finish_time\":null,\"start_recovery_time\":null,\"end_recovery_time\":null,\"state\":null,\"link\":null,\"author_id\":null}', '3', '3');
+INSERT INTO `queue_task` VALUES ('8639cdac-5c5f-410c-abc5-a1d03528c71d', 'DesignTempletQueueTask2', '0', '{\"design_templet_id\":\"84d182ea-a684-45bd-9792-783cb3fcf671\",\"design_templet_name\":\"2\",\"finish_time\":null,\"start_recovery_time\":null,\"end_recovery_time\":null,\"state\":null,\"link\":null,\"author_id\":null}', '2', '3');
+INSERT INTO `queue_task` VALUES ('9cd8e81d-576b-46fe-a0e3-ccb282aa136c', 'DesignTempletQueueTask1', '0', '{\"design_templet_id\":\"3f2c23b4-7044-4380-b869-fd453d52bcec\",\"design_templet_name\":\"1\",\"finish_time\":null,\"start_recovery_time\":null,\"end_recovery_time\":null,\"state\":null,\"link\":null,\"author_id\":null}', '1', '3');
+
+-- ----------------------------
 -- Table structure for single_answer_count
 -- ----------------------------
 DROP TABLE IF EXISTS `single_answer_count`;
@@ -291,23 +290,24 @@ CREATE TABLE `text_answer` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for wx_author
+-- Table structure for user
 -- ----------------------------
-DROP TABLE IF EXISTS `wx_author`;
-CREATE TABLE `wx_author` (
-  `wx_author_id` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `wx_author_email` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `wx_author_nick_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `wx_author_sex` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `wx_author_country` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `wx_author_province` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `wx_author_city` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `wx_author_avatar_url` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `wx_author_open_id` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  PRIMARY KEY (`wx_author_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `user_id` varchar(255) NOT NULL,
+  `account` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `sex` varchar(255) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `state` int(255) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of wx_author
+-- Records of user
 -- ----------------------------
-INSERT INTO `wx_author` VALUES ('2c198e6a-377f-47a5-868a-421628cacfe1', '1062837400@qq.com', '一不小心睡着了', '男', '中国', '吉林', '长春', 'https://wx.qlogo.cn/mmopen/vi_32/iaccJSlTtyOwa8WsISp0dp0oEknmlicicnn0Nck2zV0quXJQ8iciaQ0kCOQC7ARRsyqLzYiaqE3oYNUKIPibvDkaicFJHg/132', 'oQLFG46moWC10Z-EqMxWGp6lWdGc');
+INSERT INTO `user` VALUES ('c5337055-7ae7-4227-b4f7-d65e94b45575', 'test', '0000', '王军岩', '男', '1950-01-01', '18743102774', '1062837400@qq.com', 'logo.jpg', '1');
