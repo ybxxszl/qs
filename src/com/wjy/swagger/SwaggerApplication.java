@@ -42,6 +42,9 @@ public class SwaggerApplication extends Application {
 		singletons.add(new com.wjy.api.website.AuthorAPI());
 		singletons.add(new com.wjy.api.website.DesignTempletAPI());
 
+		// Swagger
+		singletons.add(new com.wjy.api.swagger.SwaggerAPI());
+
 		LOGGER.info("RestEasy配置加载完成 ！！！");
 
 		/*
