@@ -2,6 +2,7 @@ package com.wjy.exception.system;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
 
 import org.apache.log4j.Logger;
 
@@ -12,6 +13,7 @@ import com.wjy.response.ResponseBuilder;
  * @author ybxxszl
  * @description 系统异常处理
  */
+@Provider
 public class SystemExceptionHandle implements ExceptionMapper<SystemException> {
 
 	private static final Logger LOGGER = Logger.getLogger(SystemExceptionHandle.class);

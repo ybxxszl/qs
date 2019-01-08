@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.ext.Provider;
 
 import org.apache.log4j.Logger;
 
@@ -19,6 +20,7 @@ import com.wjy.util.TokenUtil;
  * @author ybxxszl
  * @description 请求过滤
  */
+@Provider
 public class RequestFilter implements ContainerRequestFilter {
 
 	private static final Logger LOGGER = Logger.getLogger(RequestFilter.class);
@@ -31,7 +33,7 @@ public class RequestFilter implements ContainerRequestFilter {
 		ignore.add("/wechat/author/loginAuthor");
 		ignore.add("/wechat/author/registerAuthor");
 		ignore.add("/wechat/author/sendVerifyCode");
-		ignore.add("/webjars/swagger-ui");
+
 		ignore.add("/swagger.json");
 
 	}
@@ -45,17 +47,13 @@ public class RequestFilter implements ContainerRequestFilter {
 
 	public void lookIgnoreVerifyInfo(String path) {
 
-		if (path.startsWith("/webjars/swagger-ui")) {
-
-			LOGGER.info("Swagger Petstore");
-
-		} else if (path.startsWith("/swagger.json")) {
+		if (path.startsWith("/swagger.json")) {
 
 			LOGGER.info("Swagger API");
 
 		} else {
 
-			LOGGER.info(path);
+			LOGGER.info("IGNORE: " + path);
 
 		}
 

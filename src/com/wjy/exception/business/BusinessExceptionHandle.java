@@ -2,6 +2,7 @@ package com.wjy.exception.business;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
 
 import org.apache.log4j.Logger;
 
@@ -13,6 +14,7 @@ import com.wjy.response.ResponseBuilder;
  * @author ybxxszl
  * @description 业务异常处理
  */
+@Provider
 public class BusinessExceptionHandle implements ExceptionMapper<BusinessException> {
 
 	private static final Logger LOGGER = Logger.getLogger(BusinessExceptionHandle.class);

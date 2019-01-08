@@ -10,15 +10,16 @@ import org.apache.log4j.Logger;
 
 import com.wjy.bean.swagger.SwaggerBean;
 import com.wjy.response.ReturnBuilder;
+import com.wjy.swagger.SwaggerLOGManage;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
-@Api(value = "测试Swagger")
+@Api(value = "Swagger")
 @Path(value = "/swagger")
 @Produces(value = "application/json;charset=utf-8")
-public class SwaggerAPI {
+public class SwaggerAPI extends SwaggerLOGManage {
 
 	private static final Logger LOGGER = Logger.getLogger(SwaggerAPI.class);
 
