@@ -6,8 +6,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
-import org.apache.log4j.Logger;
-
 import com.wjy.bean.swagger.SwaggerBean;
 import com.wjy.response.ReturnBuilder;
 import com.wjy.swagger.SwaggerLOGManage;
@@ -20,8 +18,6 @@ import io.swagger.annotations.ApiParam;
 @Path(value = "/swagger")
 @Produces(value = "application/json;charset=utf-8")
 public class SwaggerAPI extends SwaggerLOGManage {
-
-	private static final Logger LOGGER = Logger.getLogger(SwaggerAPI.class);
 
 	@ApiOperation(value = "添加")
 	@POST

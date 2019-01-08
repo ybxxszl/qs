@@ -1,6 +1,7 @@
 package com.wjy.swagger;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.wjy.log.LOGManage;
 
@@ -19,7 +20,7 @@ public abstract class SwaggerLOGManage extends LOGManage {
 
 		super();
 
-		LOGGER = Logger.getLogger(this.getClass());
+		LOGGER = LogManager.getLogger(this.getClass());
 
 	}
 
