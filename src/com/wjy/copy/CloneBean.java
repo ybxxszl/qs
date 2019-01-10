@@ -1,6 +1,6 @@
 package com.wjy.copy;
 
-public class CopyBean {
+public class CloneBean {
 
 	private String id;
 	private String name;
