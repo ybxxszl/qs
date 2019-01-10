@@ -1,4 +1,4 @@
-package com.wjy.copy;
+package com.wjy.clone;
 
 /**
  * 克隆对象

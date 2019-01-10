@@ -1,4 +1,4 @@
-package com.wjy.copy;
+package com.wjy.clone;
 
 public class CloneBean {
 
