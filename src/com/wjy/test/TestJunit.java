@@ -2,7 +2,9 @@ package com.wjy.test;
 
 import org.junit.*;
 
-public class TestJunit {
+import com.wjy.test.database.DatabaseTest;
+
+public class TestJunit extends DatabaseTest {
 
 	@Before
 	public void test1() {
