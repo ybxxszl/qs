@@ -1,4 +1,4 @@
-package com.wjy.thread;
+package com.wjy.thread.test;
 
 public class MyRunnable implements Runnable {
 

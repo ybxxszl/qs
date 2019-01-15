@@ -10,10 +10,34 @@ Target Server Type    : MYSQL
 Target Server Version : 50560
 File Encoding         : 65001
 
-Date: 2019-01-07 21:22:29
+Date: 2019-01-14 22:00:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for author
+-- ----------------------------
+DROP TABLE IF EXISTS `author`;
+CREATE TABLE `author` (
+  `author_id` varchar(255) NOT NULL,
+  `author_account` varchar(255) DEFAULT NULL,
+  `author_password` varchar(255) DEFAULT NULL,
+  `author_name` varchar(255) DEFAULT NULL,
+  `author_sex` varchar(255) DEFAULT NULL,
+  `author_birthday` date DEFAULT NULL,
+  `author_phone` varchar(255) DEFAULT NULL,
+  `author_email` varchar(255) DEFAULT NULL,
+  `author_photo` varchar(255) DEFAULT NULL,
+  `author_state` int(255) DEFAULT NULL,
+  PRIMARY KEY (`author_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of author
+-- ----------------------------
+INSERT INTO `author` VALUES ('5959ab5b-fa1f-4f72-8895-e70b480b71b0', 'test', '0000', '王军岩', '男', '1995-10-16', '18743102774', '1062837400@qq.com', 'logo.jpg', '1');
+INSERT INTO `author` VALUES ('c5337055-7ae7-4227-b4f7-d65e94b45575', 'admin', '1234', '王军岩', '男', '1995-10-16', '18743102774', '1062837400@qq.com', 'logo.jpg', '1');
 
 -- ----------------------------
 -- Table structure for checkbox_answer_count
@@ -171,10 +195,10 @@ CREATE TABLE `design_templet` (
   `end_recovery_time` datetime DEFAULT NULL,
   `state` int(255) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
-  `user_id` varchar(255) DEFAULT NULL,
+  `author_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`design_templet_id`),
-  KEY `foreign key_user_id` (`user_id`),
-  CONSTRAINT `foreign key_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+  KEY `foreign key_author_id` (`author_id`),
+  CONSTRAINT `foreign key_author_id` FOREIGN KEY (`author_id`) REFERENCES `author` (`author_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -290,24 +314,22 @@ CREATE TABLE `text_answer` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for user
+-- Table structure for wx_author
 -- ----------------------------
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-  `user_id` varchar(255) NOT NULL,
-  `account` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `sex` varchar(255) DEFAULT NULL,
-  `birthday` date DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `state` int(255) DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
+DROP TABLE IF EXISTS `wx_author`;
+CREATE TABLE `wx_author` (
+  `wx_author_id` varchar(255) NOT NULL,
+  `wx_author_email` varchar(255) DEFAULT NULL,
+  `wx_author_nick_name` varchar(255) DEFAULT NULL,
+  `wx_author_sex` varchar(255) DEFAULT NULL,
+  `wx_author_country` varchar(255) DEFAULT NULL,
+  `wx_author_city` varchar(255) DEFAULT NULL,
+  `wx_author_province` varchar(255) DEFAULT NULL,
+  `wx_author_avatar_url` varchar(255) DEFAULT NULL,
+  `wx_author_open_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`wx_author_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of user
+-- Records of wx_author
 -- ----------------------------
-INSERT INTO `user` VALUES ('c5337055-7ae7-4227-b4f7-d65e94b45575', 'test', '0000', '王军岩', '男', '1950-01-01', '18743102774', '1062837400@qq.com', 'logo.jpg', '1');

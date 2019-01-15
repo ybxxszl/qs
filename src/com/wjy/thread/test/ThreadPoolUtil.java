@@ -1,4 +1,4 @@
-package com.wjy.thread;
+package com.wjy.thread.test;
 
 import java.util.concurrent.*;
 
