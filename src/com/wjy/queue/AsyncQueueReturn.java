@@ -1,4 +1,4 @@
-package src.com.wjy.queue;
+package com.wjy.queue;
 
 /**
  * @desc 异步队列返回实体，异步队列父级引导子级时使用

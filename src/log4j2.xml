@@ -2,7 +2,7 @@
 <configuration status="OFF">
 	<properties>
 		<!-- 日志名称 -->
-		<property name="LOG_NAME">qs</property>
+		<property name="LOG_NAME">rbac</property>
 		<!-- 日志目录 -->
 		<property name="LOG_HOME">./logs</property>
 		<!-- 日志备份目录 -->

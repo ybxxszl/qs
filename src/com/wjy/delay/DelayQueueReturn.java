@@ -1,4 +1,4 @@
-package src.com.wjy.delay;
+package com.wjy.delay;
 
 /**
  * @desc 延时队列返回实体，延时队列返回处理结果时使用
